@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+	"-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+	
+<beans>
+	<import resource="classpath*:springBeans*.xml"/>
+	
+	<!-- Start Test Action Class -->
+	<bean id="testAction" class="com.WebQ.action.TestAction" singleton="false">
+		<constructor-arg>
+			<ref bean="test" />
+		</constructor-arg>
+	</bean>	
+	
+	
+	<!-- Registration Action Class -->
+	<bean id="registrationAction" class="com.WebQ.action.RegistrationAction" singleton="false">
+		<constructor-arg>
+			<ref bean="usersCollection" />
+		</constructor-arg>
+	</bean>
+
+
+	<!-- login action -->
+	<bean id="loginAction" class="com.WebQ.action.LoginAction" singleton="false">
+		<constructor-arg>
+			<ref bean="usersCollection" />
+		</constructor-arg>
+	</bean>
+
+	<!-- logout Action -->
+	<bean id="logoutAction" class="com.WebQ.action.LogoutAction" singleton="false" />
+
+
+	<!-- index action -->
+	<bean id="indexAction" class="WQ.IndexAction" singleton="false"/>
+	
+	<!-- Example of SAF2 action instantiated by Spring -->
+    <bean id="helloWorldAction" class="WQ.HelloWorldAction" singleton="false" />
+</beans>
+
+
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+	
+	
+	
+	<package name="default" namespace="/action" extends="struts-default">
+	</package>
+	
+	
+	<package name="myPackage" extends="struts-default">
+		
+		<interceptors>
+			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<action name="registrationAction" class="registrationAction">
+			<result name="success">/jsp/registrationSuccess.jsp</result>
+			<result name="input">/jsp/registrationForm.jsp</result>
+			<result name="error">/exceptions/error.jsp</result>
+		</action>
+				
+		<action name="login">
+			<result>/jsp/login.jsp</result>
+		</action>
+		
+		<action name="loginAction" class="loginAction">
+			<result name="success" type="redirectAction">
+			<param name="actionName">task</param>
+			</result>
+			<result name="input">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="logoutAction" class="logoutAction">
+			<result name="success" type="redirectAction">
+			<param name="actionName">login</param>
+			</result>
+		</action>
+	
+			
+		<action name="task">
+			<interceptor-ref name="secureStack"/>
+			<result>/jsp/welcomepage.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="index" class="indexAction">
+			<result>/jsp/index.jsp</result>
+		</action>
+		<action name="helloWorld" class="helloWorldAction"> 
+			<result name="input">/jsp/index.jsp</result>
+			<result>/jsp/helloWorld.jsp</result>
+		</action>
+	</package>
+	
+</struts>
