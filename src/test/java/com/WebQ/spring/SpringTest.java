@@ -1,4 +1,4 @@
-package com.WebQ.action;
+package com.WebQ.spring;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.web.context.WebApplicationContext;
@@ -8,6 +8,11 @@ import com.WebQ.beans.UsersCollection;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class SpringTest extends ActionSupport {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     public static void main(String[] args) {
 	SpringTest st = new SpringTest();

@@ -1,7 +1,5 @@
 package com.WebQ.action;
 
-import org.springframework.context.ApplicationContext;
-
 import com.WebQ.beans.User;
 import com.WebQ.beans.UsersCollection;
 import com.opensymphony.xwork2.ActionSupport;
@@ -21,7 +19,6 @@ public class RegistrationAction extends ActionSupport {
     private String lastName;
     private String emailId;
     private UsersCollection usersCollection;
-    private ApplicationContext applicationContext;
 
     public RegistrationAction(UsersCollection usersCollection) {
 	super();

@@ -3,6 +3,6 @@
 <title>Insert title here</title>
 </head>
 <div id="header" class="clearfix">
-        	<h1>WEBQUIZ</h1>
+        	<h1>QUIZ</h1>
             <hr />
 </div>

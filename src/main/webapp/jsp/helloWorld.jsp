@@ -4,7 +4,7 @@
 	
 <%@taglib prefix="s" uri="/struts-tags" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html lang="en">
 <head>
 	<title>Hello World</title>
 	<s:head />

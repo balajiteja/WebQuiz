@@ -18,11 +18,11 @@
    }  
 </script>  
    
-...  
+Test Starts here  
    
-<html:form>  
-   <html:button value="input" onclick="submitInput()"/>  
-   <html:button value="success" onclick="submitSuccess()"/>  
-</html:form>
+<s:form>  
+   <s:submit value="input" onclick="submitInput()"/>  
+   <s:submit value="success" onclick="submitSuccess()"/>  
+</s:form>
 
 

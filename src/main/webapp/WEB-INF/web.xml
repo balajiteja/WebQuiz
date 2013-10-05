@@ -54,7 +54,10 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     
-    
+    <listener>
+		<listener-class>com.WebQ.interceptors.Struts2ListenerOnGAE</listener-class>
+	</listener>
+	
     <!-- Servlets -->
     <servlet>
         <servlet-name>dwr</servlet-name>

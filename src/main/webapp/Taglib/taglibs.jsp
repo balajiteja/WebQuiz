@@ -1,4 +1,4 @@
-<%@ page language="java" errorPage="/exceptions/error.jsp" pageEncoding="UTF-8" %>
+<%@ page language="java" errorPage="/exceptions/error.jsp" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -10,6 +10,14 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+<%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+
+
+
 <!-- 
 
 

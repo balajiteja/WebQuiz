@@ -3,6 +3,9 @@
 
 
 <head>
+<script type="text/javascript">
+
+</script>
 <title>Welcome to Online quiz</title>
 </head>
 <s:form action="logoutAction" method="post">

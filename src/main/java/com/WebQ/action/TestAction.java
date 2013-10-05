@@ -5,8 +5,9 @@ import java.util.Timer;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.WebQ.beans.Test;
+import com.WebQ.beans.User;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.util.finder.Test;
 
 public class TestAction extends ActionSupport implements SessionAware {
     /**
@@ -26,12 +27,15 @@ public class TestAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() {
-	// Test logic here
-	if (testAction.equals("input")) {
-	    return INPUT;
-	}
-	if (testAction.equals("success")) {
-	    return SUCCESS;
+	User user = (User) session.get("user");
+	if (user != null) {
+	    // Test logic here
+	    if (testAction.equals("input")) {
+		return INPUT;
+	    }
+	    if (testAction.equals("success")) {
+		return SUCCESS;
+	    }
 	}
 	return ERROR;
     }

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.context.ApplicationContext;
 
 import com.WebQ.beans.User;
 import com.WebQ.beans.UsersCollection;
@@ -17,7 +16,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 1L;
     private String userId;
     private String password;
-    private ApplicationContext applicationContext;
     private UsersCollection usersCollection;
 
     public LoginAction(UsersCollection usersCollection) {
@@ -74,12 +72,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     private boolean isValidPassword(String userId, String password) {
-	return usersCollection.getUsers().get(userId).getPassword()
+	return UsersCollection.getUsers().get(userId).getPassword()
 		.equals(password);
     }
 
     private boolean isValidUserId(String userId) {
-	return usersCollection.getUsers().containsKey(userId);
+	return UsersCollection.getUsers().containsKey(userId);
     }
 
     @Override
@@ -90,7 +88,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	    return SUCCESS;
 	} else {
 	    if (isValidUser(userId, password)) {
-		session.put("user", usersCollection.getUsers().get(userId));
+		session.put("user", UsersCollection.getUsers().get(userId));
 		session.put("authorized", true);
 		session.put("context", new Date());
 		return SUCCESS;

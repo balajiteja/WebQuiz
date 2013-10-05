@@ -7,37 +7,40 @@
 <struts>
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
-	
-	
-	
+
+
+
 	<package name="default" namespace="/loggedIn" extends="struts-default">
-	
+
 		<!-- ########################### INTERCEPTORS ###########################-->
-		
+
 		<interceptors>
+			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+			
 			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>
 				<interceptor-ref name="defaultStack"/>
 			</interceptor-stack>
 		</interceptors>
-		
+
 		<!-- ########################### TEST ACTIONS ###########################-->
 		<action name="testAction" class="testAction">
 			<result name="input">/loggedIn/test.jsp</result>
 			<result name="success">/loggedIn/welcomepage.jsp</result>
 			<result name="error">/exceptions/error.jsp</result>
 		</action>
-		
+
 
 		<!-- ########################### LOGOUT ACTIONS ###########################-->
 		
 		<action name="logoutAction" class="logoutAction">
-		<interceptor-ref name="secureStack"/>
 			<result name="success" type="redirectAction">
 			<param name="namespace">/jsp</param>
 			<param name="actionName">thankyou</param>
 			</result>
+			<result>/loggedIn/welcomepage.jsp</result>
 		</action>
 
 		<!-- ########################### PAGES ###########################-->
@@ -57,7 +60,10 @@
 		
 		<!-- ########################### INTERCEPTORS ###########################-->
 		<interceptors>
+			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+		
 			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>
 				<interceptor-ref name="defaultStack"/>
@@ -77,10 +83,7 @@
 			<result name="success" type="redirectAction">
 			<param name="actionName">task</param>
 			</result>
-			<result name="input">
-			<param name="actionName">login</param>
-			<param name="namespace">/jsp</param>
-			</result>
+			<result name="input">/jsp/login.jsp</result>
 		</action>
 		
 		<action name="task">
@@ -100,7 +103,7 @@
 
 		<!-- ######################## PAGES ########################-->
 		
-		<action name="login">
+		<action name="error">
 			<result>/exceptions/error.jsp</result>
 		</action>
 		
@@ -136,6 +139,9 @@
 		<!-- ####################################################################### -->
 		
 		
+	</package>
+
+	<package name="startPackage" extends="struts-default" namespace="/" >
 		<!-- ######################## TEST -ACTIONS ########################-->
 		
 		<action name="index" class="indexAction">

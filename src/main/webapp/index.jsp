@@ -2,4 +2,4 @@
 <% response.sendRedirect("jsp/index.action"); %>
  --%>
  
- <% response.sendRedirect("jsp/index.jsp"); %>
+ <% response.sendRedirect("jsp/home.action"); %>
