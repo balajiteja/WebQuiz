@@ -1,5 +1,7 @@
 package com.WebQ.action;
 
+import org.apache.log4j.Logger;
+
 import com.WebQ.beans.User;
 import com.WebQ.beans.UsersCollection;
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,8 +28,6 @@ public class RegistrationAction extends ActionSupport {
     }
 
     public void init() {
-	// applicationContext = new
-	// ClassPathXmlApplicationContext("classpath*:sb.xml");
     }
 
     public UsersCollection getUsersCollection() {
@@ -54,7 +54,7 @@ public class RegistrationAction extends ActionSupport {
 	    addUserToDB();
 	    return SUCCESS;
 	} catch (Exception e) {
-	    e.printStackTrace();
+	    Logger.getLogger(RegistrationAction.class).error(e.toString());
 	    return ERROR;
 	}
     }

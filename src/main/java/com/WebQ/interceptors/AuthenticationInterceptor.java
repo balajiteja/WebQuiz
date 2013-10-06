@@ -2,6 +2,8 @@ package com.WebQ.interceptors;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.WebQ.beans.User;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
@@ -27,15 +29,21 @@ public class AuthenticationInterceptor implements Interceptor {
     }
 
     @Override
-    public String intercept(ActionInvocation actionInvocation) throws Exception {
-	Map<String, Object> session = actionInvocation.getInvocationContext()
-		.getSession();
-	User user = (User) session.get("user");
-	Boolean authorized = (Boolean) session.get("authorized");
-	if (user == null && (authorized != null && authorized)) {
-	    return ActionSupport.LOGIN;
+    public String intercept(ActionInvocation actionInvocation) {
+	try {
+	    Map<String, Object> session = actionInvocation
+		    .getInvocationContext().getSession();
+	    User user = (User) session.get("user");
+	    Boolean authorized = (Boolean) session.get("authorized");
+	    if (user == null && (authorized != null && authorized)) {
+		return ActionSupport.LOGIN;
+	    }
+	    return actionInvocation.invoke();
+	} catch (Exception e) {
+	    Logger.getLogger(AuthenticationInterceptor.class).error(
+		    e.toString());
 	}
-	return actionInvocation.invoke();
+	return null;
     }
 
 }

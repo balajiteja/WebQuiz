@@ -24,8 +24,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public void init() {
-	// applicationContext = new ClassPathXmlApplicationContext(new String[]
-	// { "classpath*:sb.xml" });
     }
 
     public String getUserId() {
@@ -52,12 +50,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     private boolean isValidUser(String userId, String password) {
-	// WebApplicationContext context = WebApplicationContextUtils
-	// .getRequiredWebApplicationContext(ServletActionContext
-	// .getServletContext());
-
-	// usersCollection = (UsersCollection)
-	// context.getBean("usersCollection");
 
 	if (!isValidUserId(userId)) {
 	    addFieldError(userId, "invalid userId");

@@ -29,13 +29,8 @@ public class TestAction extends ActionSupport implements SessionAware {
     public String execute() {
 	User user = (User) session.get("user");
 	if (user != null) {
-	    // Test logic here
-	    if (testAction.equals("input")) {
-		return INPUT;
-	    }
-	    if (testAction.equals("success")) {
-		return SUCCESS;
-	    }
+	    // TO-DO Test logic here
+	    return SUCCESS;
 	}
 	return ERROR;
     }

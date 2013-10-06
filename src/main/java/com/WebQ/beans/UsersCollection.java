@@ -24,11 +24,8 @@ public class UsersCollection {
     }
 
     public boolean containsUser(String userId) {
-	if (users.containsKey(userId)) {
-	    return true;
-	} else {
-	    return false;
-	}
+	return users.containsKey(userId);
+
     }
 
 }

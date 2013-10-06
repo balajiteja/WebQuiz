@@ -2,6 +2,7 @@ package com.WebQ.interceptors;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.StrutsStatics;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -28,21 +29,26 @@ public class ClearCacheInterceptor implements Interceptor {
     }
 
     @Override
-    public String intercept(ActionInvocation actionInvocation) throws Exception {
-	ActionContext context = actionInvocation.getInvocationContext();
-	HttpServletResponse response = (HttpServletResponse) context
-		.get(StrutsStatics.HTTP_RESPONSE);
+    public String intercept(ActionInvocation actionInvocation) {
+	try {
+	    ActionContext context = actionInvocation.getInvocationContext();
+	    HttpServletResponse response = (HttpServletResponse) context
+		    .get(StrutsStatics.HTTP_RESPONSE);
 
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Cache-Control", "no-cache, no-store");
-	response.setDateHeader("Expires", 0);
-	response.setHeader("Vary", "*");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setHeader("Cache-Control", "no-cache, no-store");
+	    response.setDateHeader("Expires", 0);
+	    response.setHeader("Vary", "*");
 
-	String result = actionInvocation.invoke();
+	    String result = actionInvocation.invoke();
 
-	System.out.println("check result=" + result);
-
-	return result;
+	    Logger.getLogger(ClearCacheInterceptor.class).debug(
+		    "result" + result);
+	    return result;
+	} catch (Exception e) {
+	    Logger.getLogger(ClearCacheInterceptor.class).error(e.toString());
+	}
+	return null;
     }
 
 }
