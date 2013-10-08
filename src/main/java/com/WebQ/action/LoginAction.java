@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.WebQ.beans.User;
-import com.WebQ.beans.UsersCollection;
+import com.WebQ.db.RetrieveDbInfo;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport implements SessionAware {
@@ -16,11 +16,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 1L;
     private String userId;
     private String password;
-    private UsersCollection usersCollection;
+    private RetrieveDbInfo retrieveDbInfo;
 
-    public LoginAction(UsersCollection usersCollection) {
+    public LoginAction() {
+
+    }
+
+    public LoginAction(RetrieveDbInfo retrieveDbInfo) {
 	super();
-	this.usersCollection = usersCollection;
+	this.setRetrieveDbInfo(retrieveDbInfo);
     }
 
     public void init() {
@@ -50,7 +54,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     private boolean isValidUser(String userId, String password) {
-
+	if (userId.isEmpty() || userId.equals("") || password.isEmpty()
+		|| password.equals("")) {
+	    return false;
+	}
 	if (!isValidUserId(userId)) {
 	    addFieldError(userId, "invalid userId");
 	    return false;
@@ -64,12 +71,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     private boolean isValidPassword(String userId, String password) {
-	return UsersCollection.getUsers().get(userId).getPassword()
-		.equals(password);
+
+	return retrieveDbInfo.getUser(userId).getPassword().equals(password);
     }
 
     private boolean isValidUserId(String userId) {
-	return UsersCollection.getUsers().containsKey(userId);
+	return retrieveDbInfo.containsUser(userId);
     }
 
     @Override
@@ -80,8 +87,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	    return SUCCESS;
 	} else {
 	    if (isValidUser(userId, password)) {
-		session.put("user", UsersCollection.getUsers().get(userId));
-		session.put("authorized", true);
+		session.put("user", retrieveDbInfo.getUser(userId));
 		session.put("context", new Date());
 		return SUCCESS;
 	    } else {
@@ -91,12 +97,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
     }
 
-    public UsersCollection getUsersCollection() {
-	return usersCollection;
+    public RetrieveDbInfo getRetrieveDbInfo() {
+	return retrieveDbInfo;
     }
 
-    public void setUsersCollection(UsersCollection usersCollection) {
-	this.usersCollection = usersCollection;
+    public void setRetrieveDbInfo(RetrieveDbInfo retrieveDbInfo) {
+	this.retrieveDbInfo = retrieveDbInfo;
     }
 
 }

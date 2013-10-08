@@ -40,7 +40,7 @@
 			<param name="namespace">/jsp</param>
 			<param name="actionName">thankyou</param>
 			</result>
-			<result>/loggedIn/welcomepage.jsp</result>
+			<result name="input">/loggedIn/welcomepage.jsp</result>
 		</action>
 
 		<!-- ########################### PAGES ###########################-->
@@ -84,6 +84,7 @@
 			<param name="actionName">task</param>
 			</result>
 			<result name="input">/jsp/login.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
 		</action>
 		
 		<action name="task">
@@ -138,8 +139,8 @@
 		
 		<!-- ####################################################################### -->
 		
-		
 	</package>
+		
 
 	<package name="startPackage" extends="struts-default" namespace="/" >
 		<!-- ######################## TEST -ACTIONS ########################-->

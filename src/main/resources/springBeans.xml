@@ -5,15 +5,15 @@
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
  
-    <!-- User collection class -->
+    <!-- Test class -->
 	<bean name="test" id="test" class="com.WebQ.beans.Test" scope="singleton" init-method="init"/>
 	 
 	<!-- Questions collection class -->
 	<bean name="questionsCollection" id="questionsCollection" class="com.WebQ.beans.QuestionsCollection" init-method="init"/>
     
-    <!-- User collection class -->
-	<bean name="usersCollection" id="usersCollection" class="com.WebQ.beans.UsersCollection" scope="singleton" init-method="init"/>
-	
+    <!-- Database module -->
+	    
+    <bean name="retrieveDbInfo" id="db" class="com.WebQ.db.RetrieveDbInfo" scope="singleton" init-method="init"/>
     
     
     

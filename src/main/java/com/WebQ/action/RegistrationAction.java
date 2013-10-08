@@ -3,7 +3,7 @@ package com.WebQ.action;
 import org.apache.log4j.Logger;
 
 import com.WebQ.beans.User;
-import com.WebQ.beans.UsersCollection;
+import com.WebQ.db.RetrieveDbInfo;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 
@@ -20,28 +20,20 @@ public class RegistrationAction extends ActionSupport {
     private String firstName;
     private String lastName;
     private String emailId;
-    private UsersCollection usersCollection;
+    private final RetrieveDbInfo retrieveDbInfo;
 
-    public RegistrationAction(UsersCollection usersCollection) {
+    public RegistrationAction(RetrieveDbInfo retrieveDbInfo) {
 	super();
-	this.usersCollection = usersCollection;
+	this.retrieveDbInfo = retrieveDbInfo;
     }
 
     public void init() {
     }
 
-    public UsersCollection getUsersCollection() {
-	return usersCollection;
-    }
-
-    public void setUsersCollection(UsersCollection usersCollection) {
-	this.usersCollection = usersCollection;
-    }
-
     @Override
     public String execute() {
 	try {
-	    if (usersCollection.containsUser(userId)) {
+	    if (retrieveDbInfo.containsUser(userId)) {
 		addFieldError(userId,
 			"UserId already exist.Please enter a new one.");
 		return INPUT;
@@ -60,7 +52,7 @@ public class RegistrationAction extends ActionSupport {
     }
 
     private void addUserToDB() {
-	usersCollection.addUser(new User(userId, password, firstName, lastName,
+	retrieveDbInfo.addUser(new User(userId, password, firstName, lastName,
 		emailId));
     }
 

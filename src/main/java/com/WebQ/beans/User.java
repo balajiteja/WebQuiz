@@ -9,6 +9,10 @@ public class User {
     private String emailId;
     private String score;
 
+    public User() {
+
+    }
+
     public User(String userId, String password) {
 	super();
 	this.userId = userId;

@@ -8,12 +8,12 @@
 
 <script>  
    function submitInput() {
-	  document.
-      document.forms[0].action='/testAction';  
+	  
+      document.forms[0].action='/testAction.action';  
       document.forms[0].submit();  
    }  
    function submitSuccess() {  
-      document.forms[0].action='/testAction';  
+      document.forms[0].action='/testAction.action';  
       document.forms[0].submit();  
    }  
 </script>  

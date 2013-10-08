@@ -17,7 +17,7 @@
 	<!-- Registration Action Class -->
 	<bean id="registrationAction" class="com.WebQ.action.RegistrationAction" singleton="false">
 		<constructor-arg>
-			<ref bean="usersCollection" />
+			<ref bean="retrieveDbInfo" />
 		</constructor-arg>
 	</bean>
 
@@ -25,7 +25,7 @@
 	<!-- login action -->
 	<bean id="loginAction" class="com.WebQ.action.LoginAction" singleton="false">
 		<constructor-arg>
-			<ref bean="usersCollection" />
+			<ref bean="retrieveDbInfo" />
 		</constructor-arg>
 	</bean>
 
@@ -39,14 +39,24 @@
 	<!-- Example of SAF2 action instantiated by Spring -->
     <bean id="helloWorldAction" class="WQ.HelloWorldAction" singleton="false" />
     
-    <!-- User collection class -->
+	<!-- Database module -->
+	    
+    <bean name="retrieveDbInfo" id="db" class="com.WebQ.db.RetrieveDbInfo" singleton="true" init-method="init"/>
+    
+    <!-- BEANS -->
+    
+    
+    <!-- Test class -->
 	<bean name="test" id="test" class="com.WebQ.beans.Test" singleton="true" init-method="init"/>
 	 
 	<!-- Questions collection class -->
 	<bean name="questionsCollection" id="questionsCollection" class="com.WebQ.beans.QuestionsCollection" init-method="init"/>
     
-    <!-- User collection class -->
-	<bean name="usersCollection" id="usersCollection" class="com.WebQ.beans.UsersCollection" singleton="true" init-method="init"/>
+    <!-- User class -->
+	<bean name="user" id="user" class="com.WebQ.beans.User"/>
+	
+	<!-- LevelScore Class -->
+	<bean name="levelScore" id="levelScore" class="com.WebQ.beans.LevelScore" singleton="false"/>
 	
     
 </beans>
