@@ -2,7 +2,10 @@ package com.WebQ.interceptors;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
+import org.apache.struts2.StrutsStatics;
 
 import com.WebQ.beans.User;
 import com.opensymphony.xwork2.ActionContext;
@@ -37,17 +40,16 @@ public class AuthenticationInterceptor implements Interceptor {
 
 	    User user = (User) session.get("user");
 	    if (user == null) {
+		HttpServletResponse response = (HttpServletResponse) context
+			.get(StrutsStatics.HTTP_REQUEST);
+
+		if (response != null) {
+		    response.setHeader("Pragma", "no-cache");
+		    response.setHeader("Cache-Control", "no-cache");
+		    response.setHeader("Expires", "0");
+		}
 		return ActionSupport.LOGIN;
 	    }
-
-	    // HttpServletResponse response = (HttpServletResponse) context
-	    // .get(StrutsStatics.HTTP_REQUEST);
-	    //
-	    // if (response != null) {
-	    // response.setHeader("Pragma", "no-cache");
-	    // response.setHeader("Cache-Control", "no-cache");
-	    // response.setHeader("Expires", "0");
-	    // }
 
 	    return actionInvocation.invoke();
 	} catch (Exception e) {
