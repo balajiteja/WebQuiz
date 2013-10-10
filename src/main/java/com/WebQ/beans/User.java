@@ -8,6 +8,7 @@ public class User {
     private String lastName;
     private String emailId;
     private String score;
+    private String status;
 
     public User() {
 
@@ -27,6 +28,17 @@ public class User {
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.emailId = emailId;
+    }
+
+    public User(String userId, String password, String firstName,
+	    String lastName, String emailId, String status) {
+	super();
+	this.userId = userId;
+	this.password = password;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.emailId = emailId;
+	this.status = status;
     }
 
     public String getUserId() {
@@ -75,5 +87,13 @@ public class User {
 
     public void setScore(String score) {
 	this.score = score;
+    }
+
+    public String getStatus() {
+	return status;
+    }
+
+    public void setStatus(String status) {
+	this.status = status;
     }
 }

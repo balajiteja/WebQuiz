@@ -131,7 +131,8 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	    String queryString = "INSERT INTO " + DbConstants.USER_TABLE
 		    + " VALUES('" + user.getUserId() + "','"
 		    + user.getPassword() + "','" + user.getFirstName() + "','"
-		    + user.getLastName() + "','" + user.getEmailId() + "')";
+		    + user.getLastName() + "','" + user.getEmailId() + "','"
+		    + user.getStatus() + "')";
 	    i = statement.executeUpdate(queryString);
 
 	} catch (SQLException e) {

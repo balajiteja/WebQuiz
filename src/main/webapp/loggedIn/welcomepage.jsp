@@ -29,6 +29,18 @@
 				<td><s:property value="#session['user'].emailId"/></td>
 				</tr>
 				<tr>
+				<td>Status</td>
+				<td></td>
+				<td>
+				<s:if test="%{#session['user'].status==null}">
+				You havent attempted the test yet.
+				</s:if>	
+				<s:else>
+				<s:property value="#session['user'].status"/>
+				</s:else>
+				</td>
+				</tr>
+				<tr>
 				<td>Score</td>
 				<td></td>
 				<td><s:property value="#session['user'].score"/></td>
@@ -37,5 +49,40 @@
 	</s:div>
 		<s:submit action="logoutAction" method="post" id="logoutAction" class="button" value="logout"/>
 </s:form>
-<s:a action="startTest">Start Test</s:a>
+
+<!--<s:set name="webFramework" value="framework"/>-->
+ 
+<s:if test="%{#session['user'].status==null}">
+	<s:a action="startTest">Start Test</s:a>
+</s:if>
+<s:elseif test="%{#session['user'].status=='null'}">
+    <s:a action="startTest">Start Test</s:a>
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='NULL'}">
+    <s:a action="startTest">Start Test</s:a>
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_one_started'}">
+    Level one started but not completed
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_two_started'}">
+    Level two started but not completed
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_three_started'}">
+    Level three started but not completed
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_one_completed'}">
+    Level one completed
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_two_completed'}">
+    Level two completed
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_three_completed'}">
+    Level three completed
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='tried_to_cheat'}">
+    tried to cheat
+</s:elseif>
+<s:else>
+    default
+</s:else>
 
