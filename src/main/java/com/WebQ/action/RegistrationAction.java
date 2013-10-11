@@ -67,7 +67,6 @@ public class RegistrationAction extends ActionSupport {
 	return userId;
     }
 
-    @RequiredStringValidator(message = "Please enter a UserId", trim = true)
     public void setUserId(String userId) {
 	this.userId = userId;
     }
@@ -76,7 +75,6 @@ public class RegistrationAction extends ActionSupport {
 	return password;
     }
 
-    @RequiredStringValidator(message = "Please enter a password", trim = true)
     public void setPassword(String password) {
 	this.password = password;
     }
@@ -85,7 +83,6 @@ public class RegistrationAction extends ActionSupport {
 	return lastName;
     }
 
-    @RequiredStringValidator(message = "Please enter a LastName", trim = true)
     public void setLastName(String lastName) {
 	this.lastName = lastName;
     }
@@ -94,7 +91,6 @@ public class RegistrationAction extends ActionSupport {
 	return firstName;
     }
 
-    @RequiredStringValidator(message = "Please enter a firstName", trim = true)
     public void setFirstName(String firstName) {
 	this.firstName = firstName;
     }
@@ -112,7 +108,6 @@ public class RegistrationAction extends ActionSupport {
 	return password2;
     }
 
-    @RequiredStringValidator(message = "Please re enter a password", trim = true)
     public void setPassword2(String password2) {
 	this.password2 = password2;
     }

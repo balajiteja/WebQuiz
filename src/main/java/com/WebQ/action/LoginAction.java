@@ -3,6 +3,7 @@ package com.WebQ.action;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.WebQ.beans.User;
@@ -54,16 +55,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     private boolean isValidUser(String userId, String password) {
-	if (userId.isEmpty() || userId.equals("") || password.isEmpty()
-		|| password.equals("")) {
-	    return false;
-	}
+
 	if (!isValidUserId(userId)) {
-	    addFieldError(userId, "invalid userId");
+	    // addFieldError(userId, "invalid userId");
 	    return false;
 	}
 	if (!isValidPassword(userId, password)) {
-	    addFieldError(password, "invalid password");
+	    // addFieldError(password, "invalid password");
 	    return false;
 	}
 	return true;
@@ -71,11 +69,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     private boolean isValidPassword(String userId, String password) {
-
+	if (StringUtils.isBlank(password)) {
+	    // addFieldError(password, "blank password");
+	    return false;
+	}
 	return retrieveDbInfo.getUser(userId).getPassword().equals(password);
     }
 
     private boolean isValidUserId(String userId) {
+	if (StringUtils.isBlank(userId)) {
+	    // addFieldError(userId, "blank userId");
+	    return false;
+	}
 	return retrieveDbInfo.containsUser(userId);
     }
 
@@ -91,7 +96,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		session.put("context", new Date());
 		return SUCCESS;
 	    } else {
-		addFieldError("invalid", "Invalid user or password");
 		return INPUT;
 	    }
 	}

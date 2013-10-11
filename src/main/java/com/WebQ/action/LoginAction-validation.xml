@@ -10,7 +10,7 @@
  </field>
  <field name="password">
  	<field-validator type="requiredstring">
- 		<message>You must enter a valid userId</message>
+ 		<message>You must enter a valid password</message>
  	</field-validator> 
  </field>
 </validators>

@@ -19,6 +19,7 @@ public final class DbConstants {
     public static final String FIRST_NAME = "firstName";
     public static final String LAST_NAME = "lastName";
     public static final String EMAIL_ID = "emailId";
+    public static final String STATUS = "status";
 
     // QUESTION TABLE FIELDS
     public static final String QUESTION_ID = "questionId";
