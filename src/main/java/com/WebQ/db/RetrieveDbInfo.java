@@ -63,7 +63,8 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 			resultSet.getString(DbConstants.PASSWORD),
 			resultSet.getString(DbConstants.FIRST_NAME),
 			resultSet.getString(DbConstants.LAST_NAME),
-			resultSet.getString(DbConstants.EMAIL_ID));
+			resultSet.getString(DbConstants.EMAIL_ID),
+			resultSet.getString(DbConstants.STATUS));
 	    }
 	} catch (SQLException e) {
 	    e.printStackTrace();

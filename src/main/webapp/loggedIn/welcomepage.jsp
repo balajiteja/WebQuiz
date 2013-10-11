@@ -32,7 +32,7 @@
 				<td>Status</td>
 				<td></td>
 				<td>
-				<s:if test="%{#session['user'].status==null}">
+				<s:if test="%{#session['user'].status=='null'}">
 				You havent attempted the test yet.
 				</s:if>	
 				<s:else>
@@ -53,13 +53,22 @@
 <!--<s:set name="webFramework" value="framework"/>-->
  
 <s:if test="%{#session['user'].status==null}">
-	<s:a action="startTest">Start Test</s:a>
+	<s:a action="startTest">Start Level 1</s:a>
 </s:if>
 <s:elseif test="%{#session['user'].status=='null'}">
-    <s:a action="startTest">Start Test</s:a>
+    <s:a action="startTest">Start Level 1</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='NULL'}">
-    <s:a action="startTest">Start Test</s:a>
+    <s:a action="startTest">Start level 1</s:a>
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_one_completed'}">
+    <s:a action="startTest">Start level 2</s:a>
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_two_completed'}">
+    <s:a action="startTest">Start level 3</s:a>
+</s:elseif>
+<s:elseif test="%{#session['user'].status=='level_three_completed'}">
+    Level three completed
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_one_started'}">
     Level one started but not completed
@@ -69,15 +78,6 @@
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_three_started'}">
     Level three started but not completed
-</s:elseif>
-<s:elseif test="%{#session['user'].status=='level_one_completed'}">
-    Level one completed
-</s:elseif>
-<s:elseif test="%{#session['user'].status=='level_two_completed'}">
-    Level two completed
-</s:elseif>
-<s:elseif test="%{#session['user'].status=='level_three_completed'}">
-    Level three completed
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='tried_to_cheat'}">
     tried to cheat

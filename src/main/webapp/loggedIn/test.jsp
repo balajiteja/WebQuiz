@@ -24,5 +24,6 @@ Test Starts here
    <s:submit value="input" onclick="submitInput()"/>  
    <s:submit value="success" onclick="submitSuccess()"/>  
 </s:form>
+<s:submit action="logoutAction" method="post" id="logoutAction" class="button" value="logout"/>
 
 
