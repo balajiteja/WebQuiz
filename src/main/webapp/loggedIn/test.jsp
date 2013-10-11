@@ -9,7 +9,7 @@
 <script>  
    function submitInput() {
 	  
-      document.forms[0].action='/testAction.action';  
+      document.forms[0].action='logoutAction.action';  
       document.forms[0].submit();  
    }  
    function submitSuccess() {  
@@ -24,6 +24,9 @@ Test Starts here
    <s:submit value="input" onclick="submitInput()"/>  
    <s:submit value="success" onclick="submitSuccess()"/>  
 </s:form>
-<s:submit action="logoutAction" method="post" id="logoutAction" class="button" value="logout"/>
+
+<s:form action="logoutAction" method="post">
+		<s:submit action="logoutAction" method="post" id="logoutAction" class="button" value="logout"/>
+</s:form>
 
 

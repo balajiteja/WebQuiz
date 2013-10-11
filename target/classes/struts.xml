@@ -46,7 +46,7 @@
 		<!-- ########################### PAGES ###########################-->
 		
 		<action name="startTest">
-			<result>/loggedIn/test.jsp</result>
+			<result>/loggedIn/test.jsp</result>			
 		</action>
 		
 		<action name="welcome">
