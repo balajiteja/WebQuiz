@@ -8,7 +8,7 @@
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
 
-
+	<constant name="struts.devMode" value="false" />
 
 	<package name="default" namespace="/loggedIn" extends="struts-default">
 
@@ -27,7 +27,10 @@
 
 		<!-- ########################### TEST ACTIONS ###########################-->
 		<action name="testAction" class="testAction">
-			<result name="input">/loggedIn/test.jsp</result>
+			<result name="start1">/loggedIn/testLevel1.jsp</result>
+			<result name="start2">/loggedIn/testLevel2.jsp</result>
+			<result name="start3">/loggedIn/testLevel3.jsp</result>
+			<result name="input">/loggedIn/testAgreement.jsp</result>
 			<result name="success">/loggedIn/welcomepage.jsp</result>
 			<result name="error">/exceptions/error.jsp</result>
 		</action>
@@ -35,18 +38,19 @@
 
 		<!-- ########################### LOGOUT ACTIONS ###########################-->
 		
-		<action name="logoutAction" class="logoutAction">
+		<action name="logoutAction" class="logoutAction">		
+			<interceptor-ref name="secureStack"/>	
 			<result name="success" type="redirectAction">
-			<param name="namespace">/jsp</param>
-			<param name="actionName">thankyou</param>
+				<param name="namespace">/jsp</param>
+				<param name="actionName">thankyou</param>
 			</result>
 			<result name="input">/loggedIn/welcomepage.jsp</result>
 		</action>
 
 		<!-- ########################### PAGES ###########################-->
 		
-		<action name="startTest">
-			<result>/loggedIn/test.jsp</result>			
+		<action name="testAgreement">
+			<result>/loggedIn/testAgreement.jsp</result>			
 		</action>
 		
 		<action name="welcome">
@@ -81,7 +85,7 @@
 		<!-- ######################## LOGIN -ACTION ########################-->		
 		<action name="loginAction" class="loginAction">
 			<result name="success" type="redirectAction">
-			<param name="actionName">task</param>
+				<param name="actionName">task</param>
 			</result>
 			<result name="input">/jsp/login.jsp</result>
 			<result name="login">/jsp/login.jsp</result>
@@ -90,12 +94,12 @@
 		<action name="task">
 			<interceptor-ref name="secureStack"/>
 			<result name="success" type="redirectAction">
-			<param name="namespace">/loggedIn</param>
-			<param name="actionName">welcome</param>
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
 			</result>
 			<result name="login">
-			<param name="namespace">/jsp</param>
-			<param name="actionName">login</param>
+				<param name="namespace">/jsp</param>
+				<param name="actionName">login</param>
 			</result>
 		</action>
 

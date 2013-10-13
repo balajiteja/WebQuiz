@@ -19,21 +19,29 @@ public class AuthenticationInterceptor implements Interceptor {
 
     @Override
     public void destroy() {
-	// TODO Auto-generated method stub
-
+	System.out.println("Destroying MyLoggingInterceptor...");
     }
 
     @Override
     public void init() {
-	// TODO Auto-generated method stub
-
+	System.out.println("Initializing  MyLoggingInterceptor...");
     }
 
     @Override
     public String intercept(ActionInvocation actionInvocation) {
+
 	try {
 	    ActionContext context = actionInvocation.getInvocationContext();
 	    Map<String, Object> session = context.getSession();
+
+	    String className = actionInvocation.getAction().getClass()
+		    .getName();
+	    long startTime = System.currentTimeMillis();
+	    System.out.println("Before calling action: " + className);
+
+	    long endTime = System.currentTimeMillis();
+	    System.out.println("After calling action: " + className
+		    + " Time taken: " + (endTime - startTime) + " ms");
 
 	    User user = (User) session.get("user");
 	    if (user == null) {

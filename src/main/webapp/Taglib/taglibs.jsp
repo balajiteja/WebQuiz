@@ -10,6 +10,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="/struts-dojo-tags" prefix="sx"%>
 
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>

@@ -37,8 +37,8 @@ public class LoginActionTest extends TestCase {
 
     public void testTalidateAuthentication() throws Exception {
 
-	testLoginAction.setUserId("testUserId");
-	testLoginAction.setPassword("testPassword");
+	testLoginAction.setUserId("teja");
+	testLoginAction.setPassword("1131002");
 	testSession.put("user", new User("testUserId", "testPassword"));
 	testLoginAction.setSession(testSession);
 	String output = testLoginAction.execute();

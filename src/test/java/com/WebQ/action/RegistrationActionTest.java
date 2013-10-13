@@ -50,8 +50,8 @@ public class RegistrationActionTest extends TestCase {
 	registrationAction.setLastName("");
 	registrationAction.setEmailId("");
 	retrieveDbInfo.init();
-	retrieveDbInfo.addUser(new User("testUserId", "testPassword",
-		"testFirstName", "testLastName", "testEmailId"));
+	retrieveDbInfo.addUser(new User("testUserId23", "testPassword",
+		"testFirstName2", "testLastName2", "testEmailId2"));
 
 	String output = registrationAction.execute();
 
@@ -69,8 +69,8 @@ public class RegistrationActionTest extends TestCase {
 	registrationAction.setLastName("testLastName");
 	registrationAction.setEmailId("testEmailId");
 	retrieveDbInfo.init();
-	retrieveDbInfo.addUser(new User("testUserId", "testPassword",
-		"testFirstName", "testLastName", "testEmailId"));
+	retrieveDbInfo.addUser(new User("testUserId21", "testPassword1",
+		"testFirstName1", "testLastName1", "testEmailId1"));
 
 	String output = registrationAction.execute();
 
@@ -81,12 +81,12 @@ public class RegistrationActionTest extends TestCase {
     public void testValidEntry() {
 	retrieveDbInfo = new RetrieveDbInfo();
 	registrationAction = new RegistrationAction(retrieveDbInfo);
-	registrationAction.setUserId("testUserId");
-	registrationAction.setPassword("testPassword");
-	registrationAction.setPassword2("testPassword");
-	registrationAction.setFirstName("testFirstName");
-	registrationAction.setLastName("testLastName");
-	registrationAction.setEmailId("testEmailId");
+	registrationAction.setUserId("testUserId123");
+	registrationAction.setPassword("testPassword123");
+	registrationAction.setPassword2("testPassword123");
+	registrationAction.setFirstName("testFirstName123");
+	registrationAction.setLastName("testLastName123");
+	registrationAction.setEmailId("testEmailId123");
 	retrieveDbInfo.init();
 
 	String output = registrationAction.execute();

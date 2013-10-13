@@ -4,10 +4,15 @@
 
 <head>
 <script type="text/javascript">
+	window.location.hash="no-back-button";
+	window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
+	window.onhashchange=function(){window.location.hash="no-back-button";}
 
 </script>
 <title>Welcome to Online quiz</title>
 </head>
+
+
 <s:form action="logoutAction" method="post">
 	<s:div>
 		<h4>Hello <s:property value="#session['user'].userId"/> !</h4>
@@ -53,19 +58,19 @@
 <!--<s:set name="webFramework" value="framework"/>-->
  
 <s:if test="%{#session['user'].status==null}">
-	<s:a action="startTest">Start Level 1</s:a>
+	<s:a action="testAgreement">Start Level 1</s:a>
 </s:if>
 <s:elseif test="%{#session['user'].status=='null'}">
-    <s:a action="startTest">Start Level 1</s:a>
+    <s:a action="testAgreement">Start Level 1</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='NULL'}">
-    <s:a action="startTest">Start level 1</s:a>
+    <s:a action="testAgreement">Start level 1</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_one_completed'}">
-    <s:a action="startTest">Start level 2</s:a>
+    <s:a action="testAgreement">Start level 2</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_two_completed'}">
-    <s:a action="startTest">Start level 3</s:a>
+    <s:a action="testAgreement">Start level 3</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_three_completed'}">
     Level three completed

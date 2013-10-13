@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.WebQ.beans.Test;
 import com.WebQ.beans.User;
+import com.WebQ.beans.UserStatusConstants;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TestAction extends ActionSupport implements SessionAware {
@@ -30,7 +31,20 @@ public class TestAction extends ActionSupport implements SessionAware {
 	User user = (User) session.get("user");
 	if (user != null) {
 	    // TO-DO Test logic here
-	    return SUCCESS;
+	    String status = user.getStatus();
+	    switch (status) {
+	    case UserStatusConstants.USER_NULL:
+		return "start1";
+	    case "NULL":
+		return "start1";
+	    case UserStatusConstants.USER_LEVEL_ONE_COMPLETED:
+		return "start2";
+	    case UserStatusConstants.USER_LEVEL_TWO_COMPLETED:
+		return "start3";
+	    default:
+		break;
+	    }
+	    return INPUT;
 	}
 	return ERROR;
     }
