@@ -24,8 +24,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public LoginAction(RetrieveDbInfo retrieveDbInfo) {
-	super();
-	this.setRetrieveDbInfo(retrieveDbInfo);
+	this.retrieveDbInfo = retrieveDbInfo;
     }
 
     public void init() {
@@ -57,11 +56,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private boolean isValidUser(String userId, String password) {
 
 	if (!isValidUserId(userId)) {
-	    // addFieldError(userId, "invalid userId");
 	    return false;
 	}
 	if (!isValidPassword(userId, password)) {
-	    // addFieldError(password, "invalid password");
 	    return false;
 	}
 	return true;
@@ -70,7 +67,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     private boolean isValidPassword(String userId, String password) {
 	if (StringUtils.isBlank(password)) {
-	    // addFieldError(password, "blank password");
 	    return false;
 	}
 	return retrieveDbInfo.getUser(userId).getPassword().equals(password);
@@ -78,7 +74,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     private boolean isValidUserId(String userId) {
 	if (StringUtils.isBlank(userId)) {
-	    // addFieldError(userId, "blank userId");
 	    return false;
 	}
 	return retrieveDbInfo.containsUser(userId);

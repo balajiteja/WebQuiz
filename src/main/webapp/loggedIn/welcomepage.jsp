@@ -1,17 +1,16 @@
 
+<%@page import="com.WebQ.beans.User"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
 
 
 <head>
+<script type="text/javascript" src="js/security.js"></script>
 <script type="text/javascript">
-	window.location.hash="no-back-button";
-	window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
-	window.onhashchange=function(){window.location.hash="no-back-button";}
-
+	
+	
 </script>
 <title>Welcome to Online quiz</title>
 </head>
-
 
 <s:form action="logoutAction" method="post">
 	<s:div>

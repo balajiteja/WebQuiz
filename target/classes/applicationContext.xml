@@ -9,7 +9,7 @@
 	<!-- Start Test Action Class -->
 	<bean id="testAction" class="com.WebQ.action.TestAction" singleton="false">
 		<constructor-arg>
-			<ref bean="test" />
+			<ref bean="retrieveDbInfo" />
 		</constructor-arg>
 	</bean>	
 	
@@ -50,7 +50,7 @@
 	<bean name="test" id="test" class="com.WebQ.beans.Test" singleton="true" init-method="init"/>
 	 
 	<!-- Questions collection class -->
-	<bean name="questionsCollection" id="questionsCollection" class="com.WebQ.beans.QuestionsCollection" init-method="init"/>
+	<bean name="questionsCollection" id="questionsCollection" class="com.WebQ.beans.QuestionsCollection" singleton="true" init-method="init"/>
     
     <!-- User class -->
 	<bean name="user" id="user" class="com.WebQ.beans.User"/>

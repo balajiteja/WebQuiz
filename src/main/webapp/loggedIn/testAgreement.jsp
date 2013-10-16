@@ -22,8 +22,7 @@
 </script>  
 <body>
 
-<iframe class="result_output" width="400" >
-<div id="myDiv"><h2>Test Agreement and Acknowledgement. </h2></div>
+<iframe src="agreementDoc.txt" width="800" height="200">
 </iframe>
 
 <s:form name="formex">

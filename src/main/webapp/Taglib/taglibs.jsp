@@ -12,6 +12,10 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib uri="/struts-dojo-tags" prefix="sx"%>
 
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>

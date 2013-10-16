@@ -28,8 +28,14 @@
 		<!-- ########################### TEST ACTIONS ###########################-->
 		<action name="testAction" class="testAction">
 			<result name="start1">/loggedIn/testLevel1.jsp</result>
-			<result name="start2">/loggedIn/testLevel2.jsp</result>
-			<result name="start3">/loggedIn/testLevel3.jsp</result>
+			<result name="start2">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">testLevel2</param>
+			</result>
+			<result name="start3">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">testLevel3</param>
+			</result>
 			<result name="input">/loggedIn/testAgreement.jsp</result>
 			<result name="success">/loggedIn/welcomepage.jsp</result>
 			<result name="error">/exceptions/error.jsp</result>
@@ -44,7 +50,10 @@
 				<param name="namespace">/jsp</param>
 				<param name="actionName">thankyou</param>
 			</result>
-			<result name="input">/loggedIn/welcomepage.jsp</result>
+			<result name="input">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
 		</action>
 
 		<!-- ########################### PAGES ###########################-->
@@ -54,8 +63,27 @@
 		</action>
 		
 		<action name="welcome">
+			<interceptor-ref name="secureStack"/>
+			<result name="login">
+				<param name="namespace">/jsp</param>
+				<param name="actionName">login</param>
+			</result>
 			<result>/loggedIn/welcomepage.jsp</result>
 		</action>
+		
+		<action name="testLevel1">
+			<result>/loggedIn/testLevel1.jsp</result>
+		</action>
+		
+		<action name="testLevel2">
+			<result>/loggedIn/testLevel2.jsp</result>
+		</action>
+		
+		<action name="testLevel3">
+			<result>/loggedIn/testLevel3.jsp</result>
+		</action>
+		
+		
 		
 	</package>
 	
@@ -68,6 +96,8 @@
 		
 			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
 			
+			<interceptor name="regAuthenticationInterceptor" class="com.WebQ.interceptors.RegAuthenticationInterceptor"/>
+			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>
 				<interceptor-ref name="defaultStack"/>
@@ -77,6 +107,11 @@
 		<!-- ######################## REGISTRATION -ACTION ########################-->
 		
 		<action name="registrationAction" class="registrationAction">
+			<interceptor-ref name="regAuthenticationInterceptor"/>
+			<result name="loggedIn" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
 			<result name="success">/jsp/registrationSuccess.jsp</result>
 			<result name="input">/jsp/registrationForm.jsp</result>
 			<result name="error">/exceptions/error.jsp</result>
@@ -93,13 +128,10 @@
 		
 		<action name="task">
 			<interceptor-ref name="secureStack"/>
+			<result name="login">/jsp/login.jsp</result>
 			<result name="success" type="redirectAction">
 				<param name="namespace">/loggedIn</param>
 				<param name="actionName">welcome</param>
-			</result>
-			<result name="login">
-				<param name="namespace">/jsp</param>
-				<param name="actionName">login</param>
 			</result>
 		</action>
 
@@ -113,7 +145,12 @@
 		</action>
 		
 		<action name="login">
-			<result>/jsp/login.jsp</result>
+			<interceptor-ref name="regAuthenticationInterceptor"/>
+			<result name="loggedIn" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="login">/jsp/login.jsp</result>
 		</action>
 		
 		<action name="thankyou">
@@ -121,7 +158,12 @@
 		</action>
 		
 		<action name="register">
-			<result>/jsp/registrationForm.jsp</result>
+			<interceptor-ref name="regAuthenticationInterceptor"/>
+			<result name="loggedIn" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="login">/jsp/registrationForm.jsp</result>
 		</action>
 		
 		<action name="projectInfo">

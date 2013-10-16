@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
-public class AuthenticationInterceptor implements Interceptor {
+public class RegAuthenticationInterceptor implements Interceptor {
 
     /**
      * 
@@ -46,11 +46,12 @@ public class AuthenticationInterceptor implements Interceptor {
 	    User user = (User) session.get("user");
 	    if (user == null) {
 		return ActionSupport.LOGIN;
+	    } else if (user != null) {
+		return "loggedIn";
 	    }
 
-	    return actionInvocation.invoke();
 	} catch (Exception e) {
-	    Logger.getLogger(AuthenticationInterceptor.class).error(
+	    Logger.getLogger(RegAuthenticationInterceptor.class).error(
 		    e.toString());
 	}
 	return null;

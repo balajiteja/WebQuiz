@@ -11,7 +11,6 @@ public class Test {
 
     public void init() {
 	// Gather questions
-
     }
 
     public QuestionsCollection getQuestionsCollection() {

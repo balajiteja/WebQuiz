@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
+import com.WebQ.beans.QuestionsCollection;
 import com.WebQ.beans.User;
 
 public class RetrieveDbInfo implements RetrieveDbInfoImpl {
@@ -145,6 +146,14 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	    return false;
 	}
 
+    }
+
+    public QuestionsCollection populateQuestions(String userId) {
+	// TODO logic to get all the questions of level i
+	QuestionsCollection questionsCollection = new QuestionsCollection();
+	questionsCollection.init();
+
+	return questionsCollection;
     }
 
 }
