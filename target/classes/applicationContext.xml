@@ -6,6 +6,13 @@
 <beans>
 	<import resource="classpath*:springBeans*.xml"/>
 	
+	<!-- logout Action -->
+	<bean id="test1CompleteAction" class="com.WebQ.action.TestOneCompleteAction" singleton="false">
+		<constructor-arg>
+			<ref bean="retrieveDbInfo" />
+		</constructor-arg>
+	</bean>	
+	
 	<!-- Start Test Action Class -->
 	<bean id="testAction" class="com.WebQ.action.TestAction" singleton="false">
 		<constructor-arg>

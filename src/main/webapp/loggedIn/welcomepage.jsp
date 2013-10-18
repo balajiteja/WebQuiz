@@ -1,12 +1,23 @@
 
 <%@page import="com.WebQ.beans.User"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
-
-
+<%@ page import="org.apache.struts2.ServletActionContext" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
+<%@ page import="com.WebQ.db.RetrieveDbInfo" %>
 <head>
 <script type="text/javascript" src="js/security.js"></script>
 <script type="text/javascript">
+	<%
 	
+	WebApplicationContext context = WebApplicationContextUtils
+	.getRequiredWebApplicationContext(ServletActionContext
+		.getServletContext());
+
+	RetrieveDbInfo retrieveDbInfo = (RetrieveDbInfo) context.getBean("retrieveDbInfo");
+	
+	
+	%>
 	
 </script>
 <title>Welcome to Online quiz</title>

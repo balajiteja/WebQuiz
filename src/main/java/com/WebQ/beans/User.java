@@ -1,5 +1,8 @@
 package com.WebQ.beans;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
     private String userId;
     private String password;
@@ -7,8 +10,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String emailId;
-    private String score;
     private String status;
+    private Map<Integer, Integer> score = new HashMap<Integer, Integer>();
 
     public User() {
 
@@ -81,14 +84,6 @@ public class User {
 	this.emailId = emailId;
     }
 
-    public String getScore() {
-	return score;
-    }
-
-    public void setScore(String score) {
-	this.score = score;
-    }
-
     public String getStatus() {
 	return status;
     }
@@ -96,4 +91,21 @@ public class User {
     public void setStatus(String status) {
 	this.status = status;
     }
+
+    public Map<Integer, Integer> getScore() {
+	return score;
+    }
+
+    public void setScore(Map<Integer, Integer> score) {
+	this.score = score;
+    }
+
+    public void setLevelScore(int level, int score) {
+	this.score.put(new Integer(level), new Integer(score));
+    }
+
+    public int getLevelScore(int level) {
+	return score.get(level);
+    }
+
 }

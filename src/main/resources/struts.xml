@@ -37,6 +37,10 @@
 				<param name="actionName">testLevel3</param>
 			</result>
 			<result name="input">/loggedIn/testAgreement.jsp</result>
+			<result name="loginTimeout">
+				<param name="namespace">/jsp</param>
+				<param name="actionName">login</param>
+			</result>
 			<result name="success">/loggedIn/welcomepage.jsp</result>
 			<result name="error">/exceptions/error.jsp</result>
 		</action>
@@ -71,8 +75,8 @@
 			<result>/loggedIn/welcomepage.jsp</result>
 		</action>
 		
-		<action name="testLevel1">
-			<result>/loggedIn/testLevel1.jsp</result>
+		<action name="testLevel1" class="test1CompleteAction">
+			<result name="success">/loggedIn/welcome.jsp</result>
 		</action>
 		
 		<action name="testLevel2">

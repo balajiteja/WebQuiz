@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
+import com.WebQ.beans.Question;
 import com.WebQ.beans.QuestionsCollection;
 import com.WebQ.beans.User;
 
@@ -16,16 +17,6 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
     Statement statement;
     Connection connection;
     private ResultSet resultSet;
-
-    public static void main(String[] args) {
-	RetrieveDbInfo rb = new RetrieveDbInfo();
-	rb.init();
-	User user = rb.getUser("teja");
-	System.out.println(user.getUserId());
-	System.out.println(user.getFirstName());
-	System.out.println(user.getLastName());
-	System.out.println(user.getEmailId());
-    }
 
     public RetrieveDbInfo() {
 	init();
@@ -101,6 +92,19 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	return resultSet;
     }
 
+    private ResultSet getResultSet(String table, String field1, int value) {
+	ResultSet resultSet = null;
+	// Select * from [table] where [field1]="[value]";
+	try {
+	    resultSet = statement.executeQuery("SELECT * FROM " + table
+		    + " where " + field1 + "=" + value);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
+	return resultSet;
+    }
+
     private ResultSet getResultSet(String targetField, String table) {
 	ResultSet resultSet = null;
 	// Select [targetField] from [table];
@@ -148,12 +152,73 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 
     }
 
-    public QuestionsCollection populateQuestions(String userId) {
+    public QuestionsCollection getLevelOneQuestions(String userId) {
 	// TODO logic to get all the questions of level i
 	QuestionsCollection questionsCollection = new QuestionsCollection();
-	questionsCollection.init();
+	ResultSet resultSet;
+	try {
+	    resultSet = getResultSet(DbConstants.QUESTION_TABLE,
+		    DbConstants.LEVEL_ID, 1);
+	    while (resultSet.next()) {
+		questionsCollection.addQuestion(new Question(resultSet
+			.getInt(DbConstants.QUESTION_ID), resultSet
+			.getInt(DbConstants.LEVEL_ID), resultSet
+			.getString(DbConstants.QUESTION_DESCRIPTION), resultSet
+			.getString(DbConstants.OPTION1), resultSet
+			.getString(DbConstants.OPTION2), resultSet
+			.getString(DbConstants.OPTION3), resultSet
+			.getString(DbConstants.OPTION4), resultSet
+			.getString(DbConstants.ANSWER)));
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
 
 	return questionsCollection;
+    }
+
+    public boolean addQuestion(Question question) {
+	int i = 0;
+	// Select * from [table];
+	try {
+	    String queryString = "INSERT INTO " + DbConstants.QUESTION_TABLE
+		    + " VALUES('" + question.getQuestionId() + "','"
+		    + question.getLevelId() + "','"
+		    + question.getQuestionDescription() + "','"
+		    + question.getOption1() + "','" + question.getOption2()
+		    + "','" + question.getOption3() + "','"
+		    + question.getOption4() + "','" + question.getAnswer()
+		    + "')";
+	    i = statement.executeUpdate(queryString);
+
+	} catch (SQLException e) {
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
+	if (i == 1) {
+	    return true;
+	} else {
+	    return false;
+	}
+
+    }
+
+    public static void main(String[] args) {
+	RetrieveDbInfo rb = new RetrieveDbInfo();
+	rb.init();
+	Question question = new Question();
+	int qid = 10;
+	question.setQuestionId(qid);
+	question.setLevelId(1);
+	question.setQuestionDescription("Function oriented metrics were first proposed by?");
+	question.setOption1("John");
+	question.setOption2("Gaffney");
+	question.setOption3("Albrecht");
+	question.setOption4("Basili");
+	question.setAnswer("3");
+
+	System.out.println(rb.addQuestion(question));
+	// System.out.println(rb.getLevelOneQuestions(""));
     }
 
 }

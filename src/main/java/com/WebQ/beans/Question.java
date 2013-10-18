@@ -29,6 +29,10 @@ public class Question {
 	this.answer = answer;
     }
 
+    public Question() {
+	// TODO Auto-generated constructor stub
+    }
+
     public void setQuestionId(int questionId) {
 	this.questionId = questionId;
     }

@@ -7,11 +7,11 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.WebQ.beans.QuestionsCollection;
 import com.WebQ.beans.User;
-import com.WebQ.beans.UserStatusConstants;
 import com.WebQ.db.RetrieveDbInfo;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class TestAction extends ActionSupport implements SessionAware {
+public class TestOneCompleteAction extends ActionSupport implements
+	SessionAware {
 
     private static final long serialVersionUID = 1L;
     private Timer time;
@@ -31,7 +31,7 @@ public class TestAction extends ActionSupport implements SessionAware {
 	this.session = session;
     }
 
-    public TestAction(RetrieveDbInfo retrieveDbInfo) {
+    public TestOneCompleteAction(RetrieveDbInfo retrieveDbInfo) {
 	super();
 	this.retrieveDbInfo = retrieveDbInfo;
     }
@@ -39,30 +39,9 @@ public class TestAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() {
 	User user = (User) session.get("user");
-	if (user == null) {
-	    return "loginTimeout";
-	}
-	questionsCollection = retrieveDbInfo.getLevelOneQuestions(user
-		.getUserId());
-	session.put("questions", questionsCollection);
-	if (user != null) {
-	    // TO-DO Test logic here
-	    String status = user.getStatus();
-	    switch (status) {
-	    case UserStatusConstants.USER_NULL:
-		return "start1";
-	    case "NULL":
-		return "start1";
-	    case UserStatusConstants.USER_LEVEL_ONE_COMPLETED:
-		return "start2";
-	    case UserStatusConstants.USER_LEVEL_TWO_COMPLETED:
-		return "start3";
-	    default:
-		break;
-	    }
-	    return INPUT;
-	}
-	return ERROR;
+
+	System.out.println(user.getLevelScore(1));
+	return SUCCESS;
     }
 
     public Timer getTime() {
@@ -91,6 +70,10 @@ public class TestAction extends ActionSupport implements SessionAware {
 
     public void setQuestionsCollection(QuestionsCollection questionsCollection) {
 	this.questionsCollection = questionsCollection;
+    }
+
+    public void getLevelOneScore() {
+
     }
 
 }

@@ -17,6 +17,27 @@
 	var qi = 0;
 	var score=0;
 	var firstQuestion = true;
+	var posMark = 1;
+	var negMark = 1;
+	var count = 60;
+	var testCompl = false;
+	
+	document.onkeydown = function(){
+  	switch (event.keyCode){
+        case 116 : //F5 button
+        	alert("you may not reload");
+            event.returnValue = false;
+            event.keyCode = 0;
+            return false;
+        case 82 : //R button
+            if (event.ctrlKey){
+            	alert("you may not reload");
+                event.returnValue = false;
+                event.keyCode = 0;
+                return false;
+	            }
+	    }
+	}
 	
 	function populateQ(){
 
@@ -24,7 +45,8 @@
 	User u = (User)session.getAttribute("user");
 	QuestionsCollection qc = (QuestionsCollection) session.getAttribute("questions");
 	ArrayList<Question> q = qc.getQuestions();
-	Integer sc = (Integer)session.getAttribute(u.getUserId()+1); 
+	Integer sc = new Integer(0);
+	
 	%>
 	var j=0;
 	<%
@@ -33,12 +55,10 @@
 			questions[j] = function(){
 			var question = {};
 			question.qDesc="<%=q.get(i).getQuestionDescription()%>";
-			question.option1 = "<%=q.get(i).getOption1()%>";
-			question.option2 = "<%=q.get(i).getOption2()%>";
-			question.option3 = "<%=q.get(i).getOption3()%>";
-			question.option4 = "<%=q.get(i).getOption4()%>";
+			question.options = ["<%=q.get(i).getOption1()%>","<%=q.get(i).getOption2()%>","<%=q.get(i).getOption3()%>","<%=q.get(i).getOption4()%>"];
 			question.answer = "<%=q.get(i).getAnswer()%>";
 			question.answered = "";
+			question.attempted = false;
 			return question;
 			}();
 			j++;
@@ -47,6 +67,7 @@
 	%>
 	document.getElementById("testSec").style.visibility = "visible";
 	document.getElementById("poplt").style.visibility = "hidden";
+	countDown();
 	showQuestion();
 	}
 
@@ -57,10 +78,10 @@
 		ansd = evaluate();
 	}
 	if(ansd){
+		clearError();
 		clearRadio();
 		updateQuestionNo();
 		if(qi>=questions.length){
-			
 			showResults();
 			return;
 		}
@@ -74,12 +95,17 @@ function updateQuestionNo(){
 	document.getElementById("noOfQ").innerHTML= "questions: "+(qi+1)+"/"+(questions.length);
 }
 
+function createQuestionTable(){
+	var qTable = document.createElement("table");
+	
+}
+
 function updateQuestion(){
-	document.getElementById("questionDesc").innerHTML= questions[qi].qDesc+(qi+1).toString() ;
-	document.getElementById("option1").innerHTML= questions[qi].option1;
-	document.getElementById("option2").innerHTML= questions[qi].option2 ;
-	document.getElementById("option3").innerHTML= questions[qi].option3 ;
-	document.getElementById("option4").innerHTML= questions[qi].option4 ;
+	
+	document.getElementById("questionDesc").innerHTML= (qi+1)+":"+questions[qi].qDesc.toString() ;
+	for(var o=0;o<questions[qi].options.length;o++){
+	document.getElementById("option"+(o+1)).innerHTML= questions[qi].options[o];
+	}
 }
 function updateScore(){
 		document.getElementById("score").innerHTML= score ;
@@ -91,6 +117,7 @@ function clearRadio(){
 	document.getElementById("r3").checked=false;
 	document.getElementById("r4").checked=false;
 }
+
 function evaluate(){
 
 	var radios = document.getElementsByName('a');
@@ -103,65 +130,115 @@ function evaluate(){
 	}
 	document.getElementById("rad").innerHTML = rValue;
 	 if(rValue=="notchosen"){
-		alert("choose an option");
+		clearError();
+		showError("please select an option");
 		return false;
 	 }
-	 if(rValue==questions[qi].answer){
-	 score=score+1;
+	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){
+		 document.getElementById("resultsfunction").innerHTML = "Correct";
+	 	score=score + posMark;
 	 }
-	if(rValue==1){
-	 questions[qi].answered= questions[qi].option1;
-	}
-	else if(rValue==2){
-		 questions[qi].answered= questions[qi].option2;
-		}
-	else if(rValue==3){
-		 questions[qi].answered= questions[qi].option3;
-		}
-	else if(rValue==4){
-		 questions[qi].answered= questions[qi].option4;
-		}
-		qi=qi+1;
+	 else{
+		 document.getElementById("resultsfunction").innerHTML = "Incorrect";
+		 if(score-negMark >= 0){
+		 score = score - negMark;
+		 }
+	 }
+	 questions[qi].answered= questions[qi].options[rValue-1];
+	 questions[qi].attempted = true;
+	 qi=qi+1;
 	 return true;
+}
+
+function showError(message){
+	var errorDiv = document.getElementById("error");
+	var error = document.createElement("h1");
+	error.innerHTML = message;
+	errorDiv.appendChild(error);
+}
+
+function clearError(){
+	var errorDiv = document.getElementById("error");
+	errorDiv.innerHTML = "";
 }
 
 function showResults(){
 		document.getElementById("testSec").style.visibility = "hidden";
 		document.getElementById("finish").style.visibility = "visible";
-		document.getElementById("status").style.visibility = "hidden";
 		
 		var result = document.getElementById("result");
-		var div3 = document.createElement("h1");
-	   	div3.innerHTML= 'your Score: ' + score+'</br>';
+		var div3 = document.createElement("h2");
+		testCompl = true;
+	   	div3.innerHTML= 'Your Score: ' + score+'</br>';
 	    result.appendChild(div3);
 	
 	for(var k=0;k<questions.length;k++){
-		var div1 = document.createElement("h1"); 
-		div1.innerHTML = k+ ' Question: ' + questions[k].qDesc+'</br>';
-	    result.appendChild(div1);
-	    
-	    var div2 = document.createElement("h2");
-	   	div2.innerHTML= k+ ' Correct answer: ' + questions[k].answer+'</br>';
-	    result.appendChild(div2);
-	    
-	    var div3 = document.createElement("h3");
-	   	div3.innerHTML= k+ ' Your answer: ' + questions[k].answered+'</br>';
-	    result.appendChild(div3);
+		if(questions[k].attempted){
+			var div1 = document.createElement("h2");
+			var index = k+1;
+			div1.innerHTML = index+ ' Question: ' + questions[k].qDesc+'</br>';
+		    result.appendChild(div1);
+		    
+		    var div2 = document.createElement("p");
+		    var ans = questions[k].answer;
+		    if(parseInt(ans)==1||parseInt(ans)==2||parseInt(ans)==3||parseInt(ans)==4){
+			   	div2.innerHTML= ' Correct answer: ' + questions[k].options[parseInt(ans)-1]+'</br>';
+		    }
+		    else{
+		   	div2.innerHTML= ' Correct answer: ' + questions[k].answer+'</br>';
+		    }
+		    result.appendChild(div2);
+		    
+		    var div3 = document.createElement("p");
+		   	div3.innerHTML= ' Your answer: ' + questions[k].answered+'</br>';
+		    result.appendChild(div3);
+		}
 	}
 }
 
+function logout() {
+	
+    document.forms[0].action='logoutAction.action';  
+    document.forms[0].submit();  
+ } 
+ 
+function finish() {
+	
+    document.forms[0].action='welcome.action';  
+    document.forms[0].submit();  
+ } 
 
+
+function countDown(){  
+ if (count <=0){ 
+	  showResults();
+ }else{  
+	  count--;  
+	  days = parseInt(count / 86400);
+	  count = count % 86400;
+	   
+	  hours = parseInt(count / 3600);
+	  count = count % 3600;
+	   
+	  minutes = parseInt(count / 60);
+	  seconds = parseInt(count % 60);
+	   
+	  // format countdown string + set tag value
+	  document.getElementById("time").innerHTML = hours + "h, "
+	  + minutes + "m, " + seconds + "s"; 
+	  if(!testCompl){
+	  setTimeout("countDown()", 1000)  ;
+	  }
+ }  
+}  
 
 </script>
 </head>
 <body>
-<div id="status">
-Score: <div id="score"></div>
-Questions: <div id="noOfQ"></div>
-radio: <div id="rad"></div>
-results function<div id="resultsfunction"></div>
-Debugging :<div id="test"></div>
-</div>
+
+
+<div id="questions"></div>
+<div id="error"></div>
 <div id="result"></div>
 
 <button id="poplt" onclick="populateQ()">Start Test</button> 
@@ -169,15 +246,32 @@ Debugging :<div id="test"></div>
 
 
 
-<div id="testSec" style="visibility: hidden;">
-	<table border="1" bgcolor="white" cellspacing="0" cellpadding="0">
+<div id="testSec" style="visibility:hidden">
+	<table border="1" width="500px" bgcolor="white" cellspacing="0" cellpadding="0">
 		<tr>
 			<td width="100%">
 			
 				<form name="form1">
-				
+				<table border="0" width="800px" cellspacing="2" cellpadding="2">
+						<tr>
+							<td>Score</td>
+							<td>Questions</td>
+							<td>radio</td>
+							<td>Previous Result</td>
+							<td>Time</td>
+		
+						</tr>
+						<tr>
+							<td><div id="score"></div></td>
+							<td><div id="noOfQ"></div></td>
+							<td><div id="rad"></div></td>
+							<td><div id="resultsfunction"></div></td>
+							<td><div id="time"></div></td>
+		
+						</tr>
+				</table>
 				<b>Select Correct Answer</b>
-					<table border="0" width="500px" cellspacing="2" cellpadding="4">
+					<table border="0" width="800px" cellspacing="2" cellpadding="2">
 						<tr>
 							<td width="50%">Question:</td>
 						</tr>
@@ -218,7 +312,7 @@ Debugging :<div id="test"></div>
 
 </div>
 
-<button id="finish" style="visibility:hidden" onclick="showResults()">Finish</button>
+<button id="finish" style="visibility:hidden" onclick="finish()">Finish</button>
 
 </body>
 </html>
