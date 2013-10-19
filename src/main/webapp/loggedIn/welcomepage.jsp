@@ -15,6 +15,10 @@
 		.getServletContext());
 
 	RetrieveDbInfo retrieveDbInfo = (RetrieveDbInfo) context.getBean("retrieveDbInfo");
+	User u = (User)session.getAttribute("user");
+	session.setAttribute("user", retrieveDbInfo.getUser(u.getUserId()));
+	
+	
 	
 	
 	%>
@@ -56,9 +60,9 @@
 				</td>
 				</tr>
 				<tr>
-				<td>Score</td>
+				<td>Total Score</td>
 				<td></td>
-				<td><s:property value="#session['user'].score"/></td>
+				<td><s:property value="#session['user'].totalScore"/></td>
 			</tr>
 		</table>
 	</s:div>
@@ -83,19 +87,19 @@
     <s:a action="testAgreement">Start level 3</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_three_completed'}">
-    Level three completed
+    Level three completed and you have passed the quiz
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_one_started'}">
-    Level one started but not completed
+    Level one started but not completed contact the admin to take the test
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_two_started'}">
-    Level two started but not completed
+    Level two started but not completed contact the admin to take the test
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_three_started'}">
-    Level three started but not completed
+    Level three started but not completed contact the admin to take the test
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='tried_to_cheat'}">
-    tried to cheat
+    tried to cheat contact the admin to take the test
 </s:elseif>
 <s:else>
     default

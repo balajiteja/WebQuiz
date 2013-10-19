@@ -1,6 +1,7 @@
 package com.WebQ.beans;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import com.WebQ.db.RetrieveDbInfo;
@@ -10,6 +11,7 @@ public class QuestionsCollection {
     private ArrayList<Question> questions = new ArrayList<Question>();
 
     public ArrayList<Question> getQuestions() {
+	Collections.shuffle(questions);
 	return questions;
     }
 
@@ -27,12 +29,6 @@ public class QuestionsCollection {
     }
 
     public void populateLevel1() {
-	// questions = new HashMap<String, Question>();
-
-	// for (int i = 0; i < 5; i++) {
-	// questions.add(new Question(i, 1, (i + 1) + "questionDescription",
-	// "option1", "option2", "option3", "option4", "option1"));
-	// }
     }
 
     public Iterator<Question> getQuestionIterator() {

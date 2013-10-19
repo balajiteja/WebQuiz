@@ -16,5 +16,8 @@ public final class UserStatusConstants {
     public static final String USER_LEVEL_THREE_COMPLETED = "level_three_completed";
 
     public static final String TRIED_TO_CHEAT = "tried_to_cheat";
+    public static final int LEVEL_ONE_LIMIT = 20;
+    public static final int LEVEL_TWO_LIMIT = 20;
+    public static final int LEVEL_THREE_LIMIT = 25;
 
 }

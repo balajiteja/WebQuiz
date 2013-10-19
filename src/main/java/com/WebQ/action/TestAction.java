@@ -42,20 +42,36 @@ public class TestAction extends ActionSupport implements SessionAware {
 	if (user == null) {
 	    return "loginTimeout";
 	}
-	questionsCollection = retrieveDbInfo.getLevelOneQuestions(user
-		.getUserId());
-	session.put("questions", questionsCollection);
 	if (user != null) {
 	    // TO-DO Test logic here
 	    String status = user.getStatus();
+	    if (status == null) {
+		status = UserStatusConstants.USER_NULL;
+	    }
 	    switch (status) {
 	    case UserStatusConstants.USER_NULL:
-		return "start1";
-	    case "NULL":
+		questionsCollection = retrieveDbInfo.getLevelOneQuestions(user
+			.getUserId());
+		session.put("questions", questionsCollection);
+		user.setStatus(UserStatusConstants.USER_LEVEL_ONE_STARTED);
+		retrieveDbInfo.updateUserStatus(user.getUserId(),
+			UserStatusConstants.USER_LEVEL_ONE_STARTED);
 		return "start1";
 	    case UserStatusConstants.USER_LEVEL_ONE_COMPLETED:
+		questionsCollection = retrieveDbInfo.getLevelTwoQuestions(user
+			.getUserId());
+		session.put("questions", questionsCollection);
+		user.setStatus(UserStatusConstants.USER_LEVEL_TWO_STARTED);
+		retrieveDbInfo.updateUserStatus(user.getUserId(),
+			UserStatusConstants.USER_LEVEL_TWO_STARTED);
 		return "start2";
 	    case UserStatusConstants.USER_LEVEL_TWO_COMPLETED:
+		questionsCollection = retrieveDbInfo
+			.getLevelThreeQuestions(user.getUserId());
+		session.put("questions", questionsCollection);
+		user.setStatus(UserStatusConstants.USER_LEVEL_THREE_STARTED);
+		retrieveDbInfo.updateUserStatus(user.getUserId(),
+			UserStatusConstants.USER_LEVEL_THREE_STARTED);
 		return "start3";
 	    default:
 		break;

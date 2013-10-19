@@ -28,14 +28,8 @@
 		<!-- ########################### TEST ACTIONS ###########################-->
 		<action name="testAction" class="testAction">
 			<result name="start1">/loggedIn/testLevel1.jsp</result>
-			<result name="start2">
-				<param name="namespace">/loggedIn</param>
-				<param name="actionName">testLevel2</param>
-			</result>
-			<result name="start3">
-				<param name="namespace">/loggedIn</param>
-				<param name="actionName">testLevel3</param>
-			</result>
+			<result name="start2">/loggedIn/testLevel2.jsp</result>
+			<result name="start3">/loggedIn/testLevel3.jsp</result>
 			<result name="input">/loggedIn/testAgreement.jsp</result>
 			<result name="loginTimeout">
 				<param name="namespace">/jsp</param>
@@ -76,7 +70,7 @@
 		</action>
 		
 		<action name="testLevel1" class="test1CompleteAction">
-			<result name="success">/loggedIn/welcome.jsp</result>
+			<result name="success">/loggedIn/welcomepage.jsp</result>
 		</action>
 		
 		<action name="testLevel2">

@@ -5,8 +5,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@page import="com.WebQ.beans.Question"%>
 <%@page import="com.WebQ.beans.QuestionsCollection"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ include file="/Taglib/taglibs.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,27 +16,10 @@
 	var qi = 0;
 	var score=0;
 	var firstQuestion = true;
-	var posMark = 1;
-	var negMark = 1;
-	var count = 60;
+	var posMark = 3;
+	var negMark = 0;
+	var count = 120;
 	var testCompl = false;
-	
-	document.onkeydown = function(){
-  	switch (event.keyCode){
-        case 116 : //F5 button
-        	alert("you may not reload");
-            event.returnValue = false;
-            event.keyCode = 0;
-            return false;
-        case 82 : //R button
-            if (event.ctrlKey){
-            	alert("you may not reload");
-                event.returnValue = false;
-                event.keyCode = 0;
-                return false;
-	            }
-	    }
-	}
 	
 	function populateQ(){
 
@@ -165,6 +147,7 @@ function clearError(){
 function showResults(){
 		document.getElementById("testSec").style.visibility = "hidden";
 		document.getElementById("finish").style.visibility = "visible";
+		document.getElementById('scoreVal').value = parseInt(score);
 		
 		var result = document.getElementById("result");
 		var div3 = document.createElement("h2");
@@ -203,8 +186,7 @@ function logout() {
  } 
  
 function finish() {
-	
-    document.forms[0].action='welcome.action';  
+    document.forms[0].action='testLevel1.action';  
     document.forms[0].submit();  
  } 
 
@@ -213,6 +195,9 @@ function countDown(){
  if (count <=0){ 
 	  showResults();
  }else{  
+	 if(count<=10){
+		 document.getElementById("time").style.color="red";
+	 }
 	  count--;  
 	  days = parseInt(count / 86400);
 	  count = count % 86400;
@@ -237,14 +222,12 @@ function countDown(){
 <body>
 
 
+
 <div id="questions"></div>
 <div id="error"></div>
 <div id="result"></div>
 
 <button id="poplt" onclick="populateQ()">Start Test</button> 
-
-
-
 
 <div id="testSec" style="visibility:hidden">
 	<table border="1" width="500px" bgcolor="white" cellspacing="0" cellpadding="0">
@@ -312,7 +295,10 @@ function countDown(){
 
 </div>
 
-<button id="finish" style="visibility:hidden" onclick="finish()">Finish</button>
+<s:form name="formex" action="testLevel1" method="post">
+	<s:hidden id="scoreVal" name="score"/>
+	<s:submit id="finish"  style="visibility:hidden" value="finish"/>
+</s:form>
 
 </body>
 </html>

@@ -11,4 +11,4 @@
 <title>Logout</title>
 </head>
 
-Thanks you.
+Thank you.

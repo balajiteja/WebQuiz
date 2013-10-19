@@ -49,7 +49,7 @@ public class CheatCheck {
 	int period = 1000;
 
 	timer = new Timer();
-	interval = 30;
+	interval = 60;
 	timer.scheduleAtFixedRate(new TimerTask() {
 
 	    @Override

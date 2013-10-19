@@ -128,6 +128,18 @@
       <type>maven-plugin</type>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts2-dojo-plugin</artifactId>
+      <version>2.3.15.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts-taglib</artifactId>
+      <version>1.3.10</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
@@ -369,7 +381,7 @@
           </execution>
         </executions>
         <configuration>
-          <argLine>-javaagent:C:\Users\Teja\AppData\Local\Temp\jacocoagent4515384016975837426.jar=destfile=target/jacoco.exec,excludes=*_javassist_*</argLine>
+          <argLine>-javaagent:C:\Users\Teja\AppData\Local\Temp\jacocoagent7489175556756326221.jar=destfile=target/jacoco.exec,excludes=*_javassist_*</argLine>
           <testFailureIgnore>true</testFailureIgnore>
         </configuration>
       </plugin>

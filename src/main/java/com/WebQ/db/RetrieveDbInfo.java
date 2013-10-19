@@ -62,7 +62,24 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	    e.printStackTrace();
 	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 	}
+	setUserScore(user);
 	return user;
+    }
+
+    public void setUserScore(User user) {
+	ResultSet resultSet;
+	try {
+	    resultSet = getResultSet(DbConstants.LEVEL_SCORE_TABLE,
+		    DbConstants.USER_ID, user.getUserId());
+	    while (resultSet.next()) {
+		user.setLevelScore(resultSet.getInt(DbConstants.LEVEL_ID),
+			resultSet.getInt(DbConstants.SCORE));
+		user.addTotalScore(resultSet.getInt(DbConstants.SCORE));
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
     }
 
     private ResultSet getResultSet(String targetField, String table,
@@ -178,6 +195,58 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	return questionsCollection;
     }
 
+    public QuestionsCollection getLevelTwoQuestions(String userId) {
+	// TODO logic to get all the questions of level i
+	QuestionsCollection questionsCollection = new QuestionsCollection();
+	ResultSet resultSet;
+	try {
+	    resultSet = getResultSet(DbConstants.QUESTION_TABLE,
+		    DbConstants.LEVEL_ID, 2);
+	    while (resultSet.next()) {
+		questionsCollection.addQuestion(new Question(resultSet
+			.getInt(DbConstants.QUESTION_ID), resultSet
+			.getInt(DbConstants.LEVEL_ID), resultSet
+			.getString(DbConstants.QUESTION_DESCRIPTION), resultSet
+			.getString(DbConstants.OPTION1), resultSet
+			.getString(DbConstants.OPTION2), resultSet
+			.getString(DbConstants.OPTION3), resultSet
+			.getString(DbConstants.OPTION4), resultSet
+			.getString(DbConstants.ANSWER)));
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
+
+	return questionsCollection;
+    }
+
+    public QuestionsCollection getLevelThreeQuestions(String userId) {
+	// TODO logic to get all the questions of level i
+	QuestionsCollection questionsCollection = new QuestionsCollection();
+	ResultSet resultSet;
+	try {
+	    resultSet = getResultSet(DbConstants.QUESTION_TABLE,
+		    DbConstants.LEVEL_ID, 3);
+	    while (resultSet.next()) {
+		questionsCollection.addQuestion(new Question(resultSet
+			.getInt(DbConstants.QUESTION_ID), resultSet
+			.getInt(DbConstants.LEVEL_ID), resultSet
+			.getString(DbConstants.QUESTION_DESCRIPTION), resultSet
+			.getString(DbConstants.OPTION1), resultSet
+			.getString(DbConstants.OPTION2), resultSet
+			.getString(DbConstants.OPTION3), resultSet
+			.getString(DbConstants.OPTION4), resultSet
+			.getString(DbConstants.ANSWER)));
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
+
+	return questionsCollection;
+    }
+
     public boolean addQuestion(Question question) {
 	int i = 0;
 	// Select * from [table];
@@ -201,6 +270,43 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	    return false;
 	}
 
+    }
+
+    public boolean updateUserStatus(String userId, String status) {
+	int i = 0;
+	// Select * from [table];
+	try {
+	    String queryString = "UPDATE " + DbConstants.USER_TABLE + " SET "
+		    + DbConstants.STATUS + "='" + status + "' WHERE "
+		    + DbConstants.USER_ID + "='" + userId + "'";
+	    i = statement.executeUpdate(queryString);
+
+	} catch (SQLException e) {
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
+	if (i == 1) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+
+    public boolean updateUserScore(String userId, int levelId, int score) {
+	int i = 0;
+	// Select * from [table];
+	try {
+	    String queryString = "INSERT INTO " + DbConstants.LEVEL_SCORE_TABLE
+		    + " VALUES('" + userId + "'," + levelId + "," + score + ")";
+	    i = statement.executeUpdate(queryString);
+
+	} catch (SQLException e) {
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+	}
+	if (i == 1) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public static void main(String[] args) {

@@ -11,6 +11,16 @@ public class User {
     private String lastName;
     private String emailId;
     private String status;
+    private int totalScore = 0;
+
+    public int getTotalScore() {
+	return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+	this.totalScore = totalScore;
+    }
+
     private Map<Integer, Integer> score = new HashMap<Integer, Integer>();
 
     public User() {
@@ -106,6 +116,11 @@ public class User {
 
     public int getLevelScore(int level) {
 	return score.get(level);
+    }
+
+    public int addTotalScore(int score2) {
+	totalScore = totalScore + score2;
+	return totalScore;
     }
 
 }
