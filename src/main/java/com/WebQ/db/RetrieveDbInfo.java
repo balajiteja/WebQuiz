@@ -313,9 +313,9 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	RetrieveDbInfo rb = new RetrieveDbInfo();
 	rb.init();
 	Question question = new Question();
-	int qid = 10;
+	int qid = 11;
 	question.setQuestionId(qid);
-	question.setLevelId(1);
+	question.setLevelId(2);
 	question.setQuestionDescription("Function oriented metrics were first proposed by?");
 	question.setOption1("John");
 	question.setOption2("Gaffney");

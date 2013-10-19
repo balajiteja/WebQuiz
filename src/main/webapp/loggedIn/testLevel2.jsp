@@ -20,6 +20,7 @@
 	var negMark = 1;
 	var count = 105;
 	var testCompl = false;
+	var levelId = 2;
 	
 	function populateQ(){
 
@@ -147,6 +148,7 @@ function showResults(){
 		document.getElementById("testSec").style.visibility = "hidden";
 		document.getElementById("finish").style.visibility = "visible";
 		document.getElementById('scoreVal').value = parseInt(score);
+		document.getElementById('levelId').value = parseInt(levelId);
 		
 		var result = document.getElementById("result");
 		var div3 = document.createElement("h2");
@@ -295,6 +297,7 @@ function countDown(){
 </div>
 
 <s:form name="formex" action="testLevel1" method="post">
+	<s:hidden id="levelId" name="levelId"/>
 	<s:hidden id="scoreVal" name="score"/>
 	<s:submit id="finish"  style="visibility:hidden" value="finish"/>
 </s:form>

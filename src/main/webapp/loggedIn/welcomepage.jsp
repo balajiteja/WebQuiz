@@ -17,18 +17,17 @@
 	RetrieveDbInfo retrieveDbInfo = (RetrieveDbInfo) context.getBean("retrieveDbInfo");
 	User u = (User)session.getAttribute("user");
 	session.setAttribute("user", retrieveDbInfo.getUser(u.getUserId()));
-	
-	
-	
-	
 	%>
+	
+	
+	
 	
 </script>
 <title>Welcome to Online quiz</title>
 </head>
 
 <s:form action="logoutAction" method="post">
-	<s:div>
+	<s:div cssStyle="color:white">
 		<h4>Hello <s:property value="#session['user'].userId"/> !</h4>
 		<p>logged in time: <%=session.getAttribute("context") %></p>
 		<table>
@@ -69,21 +68,24 @@
 		<s:submit action="logoutAction" method="post" id="logoutAction" class="button" value="logout"/>
 </s:form>
 
-<!--<s:set name="webFramework" value="framework"/>-->
- 
+<div cssStyle="bgcolor:white">
 <s:if test="%{#session['user'].status==null}">
+	You can give level 2 only if you score 20 or above points in this
 	<s:a action="testAgreement">Start Level 1</s:a>
 </s:if>
 <s:elseif test="%{#session['user'].status=='null'}">
+	You can give level 2 only if you score 20 or above points in this
     <s:a action="testAgreement">Start Level 1</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='NULL'}">
     <s:a action="testAgreement">Start level 1</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_one_completed'}">
+	You can give level 3 only if you score 20 or above points in this
     <s:a action="testAgreement">Start level 2</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_two_completed'}">
+	You can complete this module only if you score 25 or above in this level
     <s:a action="testAgreement">Start level 3</s:a>
 </s:elseif>
 <s:elseif test="%{#session['user'].status=='level_three_completed'}">
@@ -105,3 +107,4 @@
     default
 </s:else>
 
+</div>

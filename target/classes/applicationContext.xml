@@ -6,6 +6,14 @@
 <beans>
 	<import resource="classpath*:springBeans*.xml"/>
 	
+	
+	<bean id="adminAction" class="com.WebQ.action.AdminAction" singleton="false">
+		<constructor-arg>
+			<ref bean="retrieveDbInfo" />
+		</constructor-arg>
+	</bean>	
+	
+	
 	<!-- test 1 complete Action -->
 	<bean id="test1CompleteAction" class="com.WebQ.action.TestCompleteAction" singleton="false">
 		<constructor-arg>

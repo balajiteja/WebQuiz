@@ -45,6 +45,10 @@ public class AuthenticationInterceptor implements Interceptor {
 
 	    User user = (User) session.get("user");
 	    if (user == null) {
+		user = (User) session.get("admin");
+		if (user != null) {
+		    return actionInvocation.invoke();
+		}
 		return ActionSupport.LOGIN;
 	    }
 
