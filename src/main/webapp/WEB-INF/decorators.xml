@@ -14,7 +14,7 @@
         <pattern>/struts/*</pattern>
     </excludes>
 
-    <decorator name="main1" page="main1.jsp">
+    <decorator name="main1" page="main3.jsp">
         <pattern>/jsp/*</pattern>
     </decorator>
 	<!--     

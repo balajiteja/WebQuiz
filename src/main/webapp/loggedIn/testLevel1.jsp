@@ -11,6 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Test level 1</title>
+<link rel="stylesheet" href="<s:url value='/styles/test.css'/>" type="text/css" media="all">
 <script>
 	var questions= new Array();
 	var qi = 0;
@@ -54,7 +55,7 @@
 	showQuestion();
 	}
 
-	function showQuestion(){
+function showQuestion(){
 	var ansd = true;
 	if(!firstQuestion)
 	{
@@ -84,7 +85,6 @@ function createQuestionTable(){
 }
 
 function updateQuestion(){
-	
 	document.getElementById("questionDesc").innerHTML= (qi+1)+":"+questions[qi].qDesc.toString() ;
 	for(var o=0;o<questions[qi].options.length;o++){
 	document.getElementById("option"+(o+1)).innerHTML= questions[qi].options[o];
@@ -220,10 +220,10 @@ function countDown(){
 }  
 
 </script>
+
 </head>
+
 <body>
-
-
 
 <div id="questions"></div>
 <div id="error"></div>
@@ -232,66 +232,60 @@ function countDown(){
 <button id="poplt" onclick="populateQ()">Start Test</button> 
 
 <div id="testSec" style="visibility:hidden">
-	<table border="1" width="500px" bgcolor="white" cellspacing="0" cellpadding="0">
+	<table>
 		<tr>
-			<td width="100%">
-			
-				<form name="form1">
-				<table border="0" width="800px" cellspacing="2" cellpadding="2">
-						<tr>
-							<td>Score</td>
-							<td>Questions</td>
-							<td>radio</td>
-							<td>Previous Result</td>
-							<td>Time</td>
-		
-						</tr>
-						<tr>
-							<td><div id="score"></div></td>
-							<td><div id="noOfQ"></div></td>
-							<td><div id="rad"></div></td>
-							<td><div id="resultsfunction"></div></td>
-							<td><div id="time"></div></td>
-		
-						</tr>
-				</table>
-				<b>Select Correct Answer</b>
-					<table border="0" width="800px" cellspacing="2" cellpadding="2">
-						<tr>
-							<td width="50%">Question:</td>
-						</tr>
+			<td>
+				<table>
+					<tr>
+						<th>Score</th>
+						<th>Questions</th>
+						<th>radio</th>
+						<th>Previous Result</th>
+						<th>Time</th>
 	
-						<tr>
-							<td><div id="questionDesc"></div></td>
-						</tr>
-						
-						<tr>
-							<td>1: <input  type="radio" id="r1" name="a" value= "1" /></td>
-							<td><div id="option1"></div></td>
-						</tr> 
-		
-						<tr>
-							<td>2: <input  type="radio" id="r2" name="a" value="2" /></td>
-							<td><div id="option2"></div></td>
-						</tr>
-						
-						<tr>
-							<td>3: <input  type="radio" id="r3" name="a" value="3" /></td>
-							<td><div id="option3"></div></td>
-						</tr>
-						
-						<tr>
-							<td>4: <input  type="radio" id="r4" name="a" value="4" /></td>
-							<td><div id="option4"></div></td>
-						</tr>
-						
-						<tr>
-							<td><center><input type="button" value="next" name="next" onclick="showQuestion()"></center></td>
-						</tr>
-					</table>
-				
-				</form>
-			</td>
+					</tr>
+					<tr>
+						<td><div id="score"></div></td>
+						<td><div id="noOfQ"></div></td>
+						<td><div id="rad"></div></td>
+						<td><div id="resultsfunction"></div></td>
+						<td><div id="time"></div></td>
+	
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>Question:</td>
+					</tr>
+
+					<tr>
+						<td width="100%"><div id="questionDesc"></div></td>
+					</tr>
+				</table>
+				<table>	
+					<tr>
+						<td><input  type="radio" id="r1" name="a" value= "1" /></td>
+						<td><div id="option1"></div></td>
+					</tr> 
+	
+					<tr>
+						<td><input  type="radio" id="r2" name="a" value="2" /></td>
+						<td><div id="option2"></div></td>
+					</tr>
+					
+					<tr>
+						<td><input  type="radio" id="r3" name="a" value="3" /></td>
+						<td><div id="option3"></div></td>
+					</tr>
+					
+					<tr>
+						<td><input  type="radio" id="r4" name="a" value="4" /></td>
+						<td><div id="option4"></div></td>
+					</tr>
+					
+				</table>
+		<tr>
+			<td><input type="button" value="next" name="next" onclick="showQuestion()"></td>
 		</tr>
 	</table>
 
