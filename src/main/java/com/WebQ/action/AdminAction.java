@@ -2,10 +2,7 @@ package com.WebQ.action;
 
 import java.util.Map;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.WebQ.beans.Question;
 import com.WebQ.db.RetrieveDbInfo;
@@ -14,9 +11,6 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 
 public class AdminAction extends ActionSupport implements SessionAware {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
     private int questionId;
     private int levelId;
@@ -30,7 +24,6 @@ public class AdminAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
 
     public AdminAction(RetrieveDbInfo retrieveDbInfo) {
-	super();
 	this.retrieveDbInfo = retrieveDbInfo;
     }
 
@@ -39,12 +32,7 @@ public class AdminAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() {
-	WebApplicationContext context = WebApplicationContextUtils
-		.getRequiredWebApplicationContext(ServletActionContext
-			.getServletContext());
 	boolean addSuccess = false;
-	RetrieveDbInfo retrieveDbInfo = (RetrieveDbInfo) context
-		.getBean("retrieveDbInfo");
 	Question q = new Question(questionId, levelId, questionDescription,
 		option1, option2, option3, option4, answer);
 	addSuccess = retrieveDbInfo.addQuestion(q);

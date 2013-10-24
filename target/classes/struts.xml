@@ -69,14 +69,20 @@
 			<result>/loggedIn/welcomepage.jsp</result>
 		</action>
 		
-		<action name="admin" class="adminAction">
+		<action name="admin">
+			<result>/loggedIn/admin.jsp</result>
+		</action>
+		
+		<action name="adminAction" class="adminAction">
 			<result name="success">/loggedIn/admin.jsp</result>
 			<result name="error">/loggedIn/admin.jsp</result>
 			<result name="input">/loggedIn/admin.jsp</result>
 		</action>
 		
 		<action name="testLevel1" class="test1CompleteAction">
-			<result name="success">/loggedIn/welcomepage.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">welcome</param>
+			</result>
 		</action>
 		
 		<action name="testLevel2">
@@ -101,6 +107,7 @@
 			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
 			
 			<interceptor name="regAuthenticationInterceptor" class="com.WebQ.interceptors.RegAuthenticationInterceptor"/>
+			<interceptor name="loginAuthenticationInterceptor" class="com.WebQ.interceptors.LoginAuthenticationInterceptor"/>
 			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>
@@ -153,7 +160,7 @@
 		</action>
 		
 		<action name="login">
-			<interceptor-ref name="regAuthenticationInterceptor"/>
+			<interceptor-ref name="loginAuthenticationInterceptor"/>
 			<result name="loggedIn" type="redirectAction">
 				<param name="namespace">/loggedIn</param>
 				<param name="actionName">welcome</param>
@@ -171,7 +178,7 @@
 				<param name="namespace">/loggedIn</param>
 				<param name="actionName">welcome</param>
 			</result>
-			<result name="login">/jsp/registrationForm.jsp</result>
+			<result>/jsp/registrationForm.jsp</result>
 		</action>
 		
 		<action name="projectInfo">

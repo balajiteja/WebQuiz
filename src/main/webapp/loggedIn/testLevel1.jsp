@@ -15,7 +15,7 @@
 <script>
 	var questions= new Array();
 	var qi = 0;
-	var score=0;
+	var score = 0;
 	var firstQuestion = true;
 	var posMark = 3;
 	var negMark = 0;
@@ -114,7 +114,7 @@ function evaluate(){
 	document.getElementById("rad").innerHTML = rValue;
 	 if(rValue=="notchosen"){
 		clearError();
-		showError("please select an option");
+		alert("please select an option");
 		return false;
 	 }
 	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){

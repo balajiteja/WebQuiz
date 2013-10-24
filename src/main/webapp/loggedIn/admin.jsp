@@ -16,16 +16,18 @@
 	document.getElementById("admin").innerHTML = "<%=u.getUserId().toString()%>";
 	document.getElementById("result").innerHTML = "<%=result%>";
 	function addUser(){
-		document.forms[0].action='admin.action';  
+		document.forms[0].action='adminAction.action';  
 	    document.forms[0].submit();
 	}
 
 </script>
 <title>Admin Page</title>
 </head>
+<h1>ADMIN</h1>
+<h1>Add Question</h1>
 <div id="admin">ADMIN PAGE</div>
 <div id="result"></div>
-<form method="post" >
+<form method="post" action="admin">
 	<table>
 	<tr>
 	<td>levelId: </td>

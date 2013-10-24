@@ -22,6 +22,14 @@ public class TestCompleteAction extends ActionSupport implements SessionAware {
     private int score;
     private int levelId;
 
+    public int getLevelId() {
+	return levelId;
+    }
+
+    public void setLevelId(int levelId) {
+	this.levelId = levelId;
+    }
+
     public RetrieveDbInfo getRetrieveDbInfo() {
 	return retrieveDbInfo;
     }

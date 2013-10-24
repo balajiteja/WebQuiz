@@ -7,9 +7,10 @@ import org.apache.log4j.Logger;
 import com.WebQ.beans.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
-public class RegAuthenticationInterceptor implements Interceptor {
+public class LoginAuthenticationInterceptor implements Interceptor {
 
     /**
      * 
@@ -43,14 +44,18 @@ public class RegAuthenticationInterceptor implements Interceptor {
 		    + " Time taken: " + (endTime - startTime) + " ms");
 
 	    User user = (User) session.get("user");
-
-	    if (user != null) {
+	    if (user == null) {
+		user = (User) session.get("admin");
+		if (user != null) {
+		    return actionInvocation.invoke();
+		}
+		return ActionSupport.LOGIN;
+	    } else if (user != null) {
 		return "loggedIn";
 	    }
-	    return actionInvocation.invoke();
 
 	} catch (Exception e) {
-	    Logger.getLogger(RegAuthenticationInterceptor.class).error(
+	    Logger.getLogger(LoginAuthenticationInterceptor.class).error(
 		    e.toString());
 	}
 	return null;

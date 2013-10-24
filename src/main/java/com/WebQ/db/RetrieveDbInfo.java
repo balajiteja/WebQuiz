@@ -14,8 +14,8 @@ import com.WebQ.beans.User;
 
 public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 
-    Statement statement;
-    Connection connection;
+    private Statement statement;
+    private Connection connection;
     private ResultSet resultSet;
 
     public RetrieveDbInfo() {
@@ -62,11 +62,11 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	    e.printStackTrace();
 	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 	}
-	setUserScore(user);
+	getUserScore(user);
 	return user;
     }
 
-    public void setUserScore(User user) {
+    public void getUserScore(User user) {
 	ResultSet resultSet;
 	try {
 	    resultSet = getResultSet(DbConstants.LEVEL_SCORE_TABLE,
@@ -296,7 +296,8 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	// Select * from [table];
 	try {
 	    String queryString = "INSERT INTO " + DbConstants.LEVEL_SCORE_TABLE
-		    + " VALUES('" + userId + "'," + levelId + "," + score + ")";
+		    + " VALUES('" + userId + "'," + levelId + "," + score
+		    + ") ON DUPLICATE KEY UPDATE score=" + score;
 	    i = statement.executeUpdate(queryString);
 
 	} catch (SQLException e) {
@@ -312,19 +313,7 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
     public static void main(String[] args) {
 	RetrieveDbInfo rb = new RetrieveDbInfo();
 	rb.init();
-	Question question = new Question();
-	int qid = 11;
-	question.setQuestionId(qid);
-	question.setLevelId(2);
-	question.setQuestionDescription("Function oriented metrics were first proposed by?");
-	question.setOption1("John");
-	question.setOption2("Gaffney");
-	question.setOption3("Albrecht");
-	question.setOption4("Basili");
-	question.setAnswer("3");
-
-	System.out.println(rb.addQuestion(question));
-	// System.out.println(rb.getLevelOneQuestions(""));
+	rb.updateUserScore("teja", 1, 30);
     }
 
 }

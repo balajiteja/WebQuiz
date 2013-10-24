@@ -18,7 +18,7 @@
 	var firstQuestion = true;
 	var posMark = 1;
 	var negMark = 0;
-	var count = 10;
+	var count = 100;
 	var testCompl = false;
 	var levelId = 3;
 	
