@@ -19,6 +19,10 @@
 		document.forms[0].action='adminAction.action';  
 	    document.forms[0].submit();
 	}
+	function logout() {
+	      document.forms[0].action='logoutAction.action';  
+	      document.forms[0].submit();  
+	}  
 
 </script>
 <title>Admin Page</title>
@@ -69,3 +73,7 @@
     </tr>
     </table>
 </form>
+
+
+
+<button type="button" onclick="logout()">logout</button> 

@@ -19,7 +19,9 @@ public class LogoutAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() {
 
-	session.remove("user");
+	if (session.remove("user") == null) {
+	    session.remove("admin");
+	}
 	return SUCCESS;
     }
 
