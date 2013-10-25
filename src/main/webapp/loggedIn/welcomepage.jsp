@@ -51,7 +51,7 @@
 				<td></td>
 				<td>
 				<s:if test="%{#session['user'].status=='null'}">
-				You havent attempted the test yet.
+				You didnt complete level one
 				</s:if>	
 				<s:else>
 				<s:property value="#session['user'].status"/>

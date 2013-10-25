@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.001" errors="1" skipped="0" tests="1" name="com.WebQ.spring.SpringTest">
+<testsuite failures="0" time="0.031" errors="1" skipped="0" tests="1" name="com.WebQ.spring.SpringTest">
   <properties>
     <property name="http.agent" value="Sonar Maven/3.1.0"/>
     <property name="ROOT_LOGGER_LEVEL" value="INFO"/>
@@ -63,7 +63,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.001" classname="com.WebQ.spring.SpringTest" name="testSpringTest">
+  <testcase time="0.031" classname="com.WebQ.spring.SpringTest" name="testSpringTest">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at org.apache.struts2.ServletActionContext.getServletContext(ServletActionContext.java:139)
 	at com.WebQ.spring.SpringTest.testSpringTest(SpringTest.java:17)

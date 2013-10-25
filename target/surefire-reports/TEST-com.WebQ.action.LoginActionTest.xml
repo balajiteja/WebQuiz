@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.46" errors="0" skipped="0" tests="2" name="com.WebQ.action.LoginActionTest">
+<testsuite failures="0" time="1.018" errors="0" skipped="0" tests="2" name="com.WebQ.action.LoginActionTest">
   <properties>
     <property name="http.agent" value="Sonar Maven/3.1.0"/>
     <property name="ROOT_LOGGER_LEVEL" value="INFO"/>
@@ -63,6 +63,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.459" classname="com.WebQ.action.LoginActionTest" name="testValidateEmptyFields"/>
-  <testcase time="0.001" classname="com.WebQ.action.LoginActionTest" name="testTalidateAuthentication"/>
+  <testcase time="0.961" classname="com.WebQ.action.LoginActionTest" name="testValidateEmptyFields"/>
+  <testcase time="0.057" classname="com.WebQ.action.LoginActionTest" name="testTalidateAuthentication"/>
 </testsuite>

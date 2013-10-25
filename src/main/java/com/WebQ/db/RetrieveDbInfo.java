@@ -23,11 +23,18 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
     }
 
     public boolean containsUser(String userId) {
-	if (getUser(userId) == null) {
-	    return false;
-	} else {
-	    return true;
+	ResultSet resultSet;
+	resultSet = getResultSet(DbConstants.USER_TABLE, DbConstants.USER_ID,
+		userId);
+	try {
+	    if (resultSet.next()
+		    && resultSet.getString(DbConstants.USER_ID) != null) {
+		return true;
+	    }
+	} catch (SQLException e) {
+	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 	}
+	return false;
     }
 
     @Override
@@ -58,11 +65,11 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 			resultSet.getString(DbConstants.EMAIL_ID),
 			resultSet.getString(DbConstants.STATUS));
 	    }
+	    getUserScore(user);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	    Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 	}
-	getUserScore(user);
 	return user;
     }
 
@@ -313,7 +320,19 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
     public static void main(String[] args) {
 	RetrieveDbInfo rb = new RetrieveDbInfo();
 	rb.init();
-	rb.updateUserScore("teja", 1, 30);
+	Question question = new Question();
+	int qid = 30;
+	question.setQuestionId(qid);
+	question.setLevelId(3);
+	question.setQuestionDescription("While the concept of social distance applies _____________ to human relationships, the _____________ of closeness and distance varies between cultures");
+	question.setOption1("unequivocally …… materialization");
+	question.setOption2("universally …… manifestation");
+	question.setOption3("unambiguously …… degree");
+	question.setOption4("unconditionally …… extent");
+	question.setAnswer("2");
+
+	System.out.println(rb.addQuestion(question));
+
     }
 
 }

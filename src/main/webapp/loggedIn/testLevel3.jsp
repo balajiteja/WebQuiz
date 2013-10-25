@@ -11,6 +11,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Test level 1</title>
+<link rel="stylesheet" href="<s:url value='/styles/test.css'/>" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $(window).blur(function(){
+    alert("Navigating away form this window will beconsidered as cheating");
+  });
+});
+</script>
 <script>
 	var questions= new Array();
 	var qi = 0;
@@ -114,6 +125,7 @@ function evaluate(){
 	document.getElementById("rad").innerHTML = rValue;
 	 if(rValue=="notchosen"){
 		clearError();
+		alert("please select an option");
 		showError("please select an option");
 		return false;
 	 }
@@ -232,12 +244,12 @@ function countDown(){
 <button id="poplt" onclick="populateQ()">Start Test</button> 
 
 <div id="testSec" style="visibility:hidden">
-	<table border="1" width="500px" bgcolor="white" cellspacing="0" cellpadding="0">
+	<table>
 		<tr>
 			<td width="100%">
 			
 				<form name="form1">
-				<table border="0" width="800px" cellspacing="2" cellpadding="2">
+				<table>
 						<tr>
 							<td>Score</td>
 							<td>Questions</td>
@@ -256,7 +268,7 @@ function countDown(){
 						</tr>
 				</table>
 				<b>Select Correct Answer</b>
-					<table border="0" width="800px" cellspacing="2" cellpadding="2">
+					<table>
 						<tr>
 							<td width="50%">Question:</td>
 						</tr>

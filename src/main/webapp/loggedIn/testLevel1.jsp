@@ -1,8 +1,8 @@
 <%@page import="com.WebQ.beans.User"%>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.Map.Entry" %>
-<%@ page import="java.util.ArrayList" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Iterator" %>
+<%@page import="java.util.Map.Entry" %>
+<%@page import="java.util.ArrayList" %>
 <%@page import="com.WebQ.beans.Question"%>
 <%@page import="com.WebQ.beans.QuestionsCollection"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
@@ -12,6 +12,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Test level 1</title>
 <link rel="stylesheet" href="<s:url value='/styles/test.css'/>" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $(window).blur(function(){
+    alert("Navigating away form this window will beconsidered as cheating");
+  });
+});
+</script>
 <script>
 	var questions= new Array();
 	var qi = 0;
@@ -114,6 +124,7 @@ function evaluate(){
 	document.getElementById("rad").innerHTML = rValue;
 	 if(rValue=="notchosen"){
 		clearError();
+		showError("please select an option");
 		alert("please select an option");
 		return false;
 	 }
@@ -193,10 +204,10 @@ function finish() {
  } 
 
 
-function countDown(){  
+function countDown(){
  if (count <=0){ 
 	  showResults();
- }else{  
+ }else{ 
 	 if(count<=10){
 		 document.getElementById("time").style.color="red";
 	 }
@@ -219,6 +230,16 @@ function countDown(){
  }  
 }  
 
+var window_focus;
+$(document).ready(function(){
+	$(window).focus(function() {
+	    window_focus = true;
+	})
+	    .blur(function() {
+	        alert("dont try to cheat !");
+	    });
+});
+
 </script>
 
 </head>
@@ -229,7 +250,10 @@ function countDown(){
 <div id="error"></div>
 <div id="result"></div>
 
-<button id="poplt" onclick="populateQ()">Start Test</button> 
+<div id="poplt">
+Do not reload or switch tabs. It will be considered as cheating.
+<button onclick="populateQ()">Start Test</button> 
+</div>
 
 <div id="testSec" style="visibility:hidden">
 	<table>
