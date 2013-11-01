@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+	"-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+	
+<beans>
+	<import resource="classpath*:springBeans*.xml"/>
+	
+	
+	<bean id="adminAction" class="com.WebQ.action.AdminAction" singleton="false">
+		<constructor-arg>
+			<ref bean="retrieveDbInfo" />
+		</constructor-arg>
+	</bean>	
+	
+	
+	<!-- test 1 complete Action -->
+	<bean id="test1CompleteAction" class="com.WebQ.action.TestCompleteAction" singleton="false">
+		<constructor-arg>
+			<ref bean="retrieveDbInfo" />
+		</constructor-arg>
+	</bean>	
+	
+	<!-- Start Test Action Class -->
+	<bean id="testAction" class="com.WebQ.action.TestAction" singleton="false">
+		<constructor-arg>
+			<ref bean="retrieveDbInfo" />
+		</constructor-arg>
+	</bean>	
+	
+	
+	<!-- Registration Action Class -->
+	<bean id="registrationAction" class="com.WebQ.action.RegistrationAction" singleton="false">
+		<constructor-arg>
+			<ref bean="retrieveDbInfo" />
+		</constructor-arg>
+	</bean>
+
+
+	<!-- login action -->
+	<bean id="loginAction" class="com.WebQ.action.LoginAction" singleton="false">
+		<constructor-arg>
+			<ref bean="retrieveDbInfo" />
+		</constructor-arg>
+	</bean>
+
+	<!-- logout Action -->
+	<bean id="logoutAction" class="com.WebQ.action.LogoutAction" singleton="false" />
+
+
+	<!-- index action -->
+	<bean id="indexAction" class="WQ.IndexAction" singleton="false"/>
+	
+	<!-- Example of SAF2 action instantiated by Spring -->
+    <bean id="helloWorldAction" class="WQ.HelloWorldAction" singleton="false" />
+    
+	<!-- Database module -->
+	    
+    <bean name="retrieveDbInfo" id="db" class="com.WebQ.db.RetrieveDbInfo" singleton="true" init-method="init"/>
+    
+    <!-- BEANS -->
+    
+    
+    <!-- Test class -->
+	<bean name="test" id="test" class="com.WebQ.beans.Test" singleton="true" init-method="init"/>
+	 
+	<!-- Questions collection class -->
+	<bean name="questionsCollection" id="questionsCollection" class="com.WebQ.beans.QuestionsCollection" singleton="true" init-method="init"/>
+    
+    <!-- User class -->
+	<bean name="user" id="user" class="com.WebQ.beans.User"/>
+	
+	<!-- LevelScore Class -->
+	<bean name="levelScore" id="levelScore" class="com.WebQ.beans.LevelScore" singleton="false"/>
+	
+    
+</beans>
+
+
+

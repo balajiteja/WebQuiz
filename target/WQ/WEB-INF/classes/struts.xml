@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+
+	<constant name="struts.devMode" value="false" />
+
+	<package name="default" namespace="/loggedIn" extends="struts-default">
+
+		<!-- ########################### INTERCEPTORS ###########################-->
+
+		<interceptors>
+			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+			
+			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- ########################### TEST ACTIONS ###########################-->
+		<action name="testAction" class="testAction">
+			<result name="start1">/loggedIn/testLevel1.jsp</result>
+			<result name="start2">/loggedIn/testLevel2.jsp</result>
+			<result name="start3">/loggedIn/testLevel3.jsp</result>
+			<result name="input">/loggedIn/welcomepage.jsp</result>
+			<result name="loginTimeout">
+				<param name="namespace">/jsp</param>
+				<param name="actionName">login</param>
+			</result>
+			<result name="success">/loggedIn/welcomepage.jsp</result>
+			<result name="error">/exceptions/error.jsp</result>
+		</action>
+
+
+		<!-- ########################### LOGOUT ACTIONS ###########################-->
+		
+		<action name="logoutAction" class="logoutAction">		
+			<interceptor-ref name="secureStack"/>	
+			<result name="success" type="redirectAction">
+				<param name="namespace">/jsp</param>
+				<param name="actionName">thankyou</param>
+			</result>
+			<result name="input">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
+		</action>
+
+		<!-- ########################### PAGES ###########################-->
+		
+		<action name="testAgreement">
+			<result>/loggedIn/testAgreement.jsp</result>			
+		</action>
+		
+		<!-- ########################### OPENING PAGE ###########################-->
+		
+		<action name="welcome">
+			<interceptor-ref name="secureStack"/>
+			<result name="login">
+				<param name="namespace">/jsp</param>
+				<param name="actionName">login</param>
+			</result>
+			<result>/loggedIn/welcomepage.jsp</result>
+		</action>
+		
+		<!-- ########################### ADMIN ###########################-->
+		
+		<action name="admin">
+			<result>/loggedIn/admin.jsp</result>
+		</action>
+		
+		<action name="adminAction" class="adminAction">
+			<result name="success">/loggedIn/admin.jsp</result>
+			<result name="error">/loggedIn/admin.jsp</result>
+			<result name="input">/loggedIn/admin.jsp</result>
+		</action>
+		
+		<action name="testLevel1" class="test1CompleteAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">welcome</param>
+			</result>
+		</action>
+		
+		<action name="testLevel2">
+			<result>/loggedIn/testLevel2.jsp</result>
+		</action>
+		
+		<action name="testLevel3">
+			<result>/loggedIn/testLevel3.jsp</result>
+		</action>
+		
+		
+		
+	</package>
+	
+	
+	<package name="myPackage" extends="struts-default" namespace="/jsp" >
+		
+		<!-- ########################### INTERCEPTORS ###########################-->
+		<interceptors>
+			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+		
+			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			
+			<interceptor name="regAuthenticationInterceptor" class="com.WebQ.interceptors.RegAuthenticationInterceptor"/>
+			<interceptor name="loginAuthenticationInterceptor" class="com.WebQ.interceptors.LoginAuthenticationInterceptor"/>
+			
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- ######################## REGISTRATION -ACTION ########################-->
+		
+		<action name="registrationAction" class="registrationAction">
+			<interceptor-ref name="regAuthenticationInterceptor"/>
+			<result name="loggedIn" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="success">/jsp/registrationSuccess.jsp</result>
+			<result name="input">/jsp/registrationForm.jsp</result>
+			<result name="error">/exceptions/error.jsp</result>
+		</action>
+		
+		<!-- ######################## LOGIN -ACTION ########################-->		
+		<action name="loginAction" class="loginAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">task</param>
+			</result>
+			<result name="admin" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">admin</param>
+			</result>
+			<result name="input">/jsp/login.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="task">
+			<interceptor-ref name="secureStack"/>
+			<result name="login">/jsp/login.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
+		</action>
+		
+		
+		<!-- ####################################################################### -->
+
+		<!-- ######################## PAGES ########################-->
+		
+		<action name="error">
+			<result>/exceptions/error.jsp</result>
+		</action>
+		
+		<action name="login">
+			<interceptor-ref name="loginAuthenticationInterceptor"/>
+			<result name="loggedIn" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result name="login">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="thankyou">
+			<result>/jsp/logout.jsp</result>
+		</action>
+		
+		<action name="register">
+			<interceptor-ref name="regAuthenticationInterceptor"/>
+			<result name="loggedIn" type="redirectAction">
+				<param name="namespace">/loggedIn</param>
+				<param name="actionName">welcome</param>
+			</result>
+			<result>/jsp/registrationForm.jsp</result>
+		</action>
+		
+		<action name="projectInfo">
+			<result>/jsp/projectInfo.jsp</result>
+		</action>
+	
+		<action name="team">
+			<result>/jsp/team.jsp</result>
+		</action>	
+
+		<action name="contact">
+			<result>/jsp/contact.jsp</result>
+		</action>	
+		
+		<action name="home">
+			<result>/jsp/home.jsp</result>
+		</action>		
+		
+		
+		<!-- ####################################################################### -->
+		
+	</package>
+		
+
+	<package name="startPackage" extends="struts-default" namespace="/" >
+		<!-- ######################## TEST -ACTIONS ########################-->
+		
+		<action name="index" class="indexAction">
+			<result>/jsp/index.jsp</result>
+		</action>
+		<action name="helloWorld" class="helloWorldAction"> 
+			<result name="input">/jsp/index.jsp</result>
+			<result>/jsp/helloWorld.jsp</result>
+		</action>
+	</package>
+	
+</struts>
