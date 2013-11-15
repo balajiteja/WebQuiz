@@ -1,3 +1,4 @@
+<%@page import="com.WebQ.db.RetrieveDbInfo"%>
 <%@page import="com.WebQ.beans.User"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Iterator" %>
@@ -6,6 +7,10 @@
 <%@page import="com.WebQ.beans.Question"%>
 <%@page import="com.WebQ.beans.QuestionsCollection"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,8 +22,11 @@
 </script>
 <script>
 $(document).ready(function(){
+	
   $(window).blur(function(){
-    alert("Navigating away form this window will beconsidered as cheating");
+	document.formex.action='testAction.action'; 
+	document.getElementById('statusVal').value = "tried_to_cheat";
+	document.formex.submit();
   });
 });
 </script>
@@ -32,11 +40,16 @@ $(document).ready(function(){
 	var count = 120;
 	var testCompl = false;
 	var levelId = 1;
+	var skippedQuestionID = new Array();
+	var m = 0;
+	var k = 0;
+	var flag = false;
+	var total = 0;
 	
 	function populateQ(){
 
 	<% 
-	User u = (User)session.getAttribute("user");
+	
 	QuestionsCollection qc = (QuestionsCollection) session.getAttribute("questions");
 	ArrayList<Question> q = qc.getQuestions();
 	Integer sc = new Integer(0);
@@ -69,20 +82,90 @@ function showQuestion(){
 	var ansd = true;
 	if(!firstQuestion)
 	{
-		ansd = evaluate();
+		document.getElementById("resultsfunction").innerHTML = "checking";
+		if(flag && total==10)
+			{
+			ansd=evaluateSkippedQuestion();
+			if(ansd)
+				{
+			clearError();
+			clearRadio();
+			displaySkippedQuestion();
+				}
+			}
+		else
+			{
+			total++;
+			ansd = evaluate();
+			}
+		
 	}
 	if(ansd){
-		clearError();
-		clearRadio();
-		updateQuestionNo();
-		if(qi>=questions.length){
-			showResults();
-			return;
-		}
-		updateScore();
-		updateQuestion();
-		firstQuestion = false;
+		
+			clearError();
+			clearRadio();
+			if(qi>=questions.length ){
+				displaySkippedQuestion();
+			}
+			updateQuestionNo();
+			updateScore();
+			updateQuestion();
+			firstQuestion = false;
 	}
+}
+
+function displaySkippedQuestion(){
+	flag=true;
+	document.getElementById("resultsfunction").innerHTML = "Reached";
+	$('input[name=skip]').hide();
+	var ansd = true;
+	//ansd = evaluateSkippedQuestion();
+	if(ansd){
+		
+			clearError();
+			clearRadio();
+			if(m>0)
+				{
+				qi=skippedQuestionID[m-1];
+				document.getElementById("resultsfunction").innerHTML = qi;
+				m--;
+				updateQuestionNo();
+				updateScore();
+				updateQuestion();
+				firstQuestion = false;
+				}
+			else{
+				showResults();
+			}
+	}
+}
+function showSkipQuestion(){
+	flag = true;
+	document.getElementById("resultsfunction").innerHTML = "Skipped";
+				if(skippedQuestionID.length>0 && qi>=questions.length-1)
+					{
+						total++;
+						skippedQuestionID[m]=qi;
+						m++;
+						qi= skippedQuestionID[m-1];
+						displaySkippedQuestion();
+						firstQuestion=false;
+					}
+				else if(qi<questions.length)
+					{
+						total++;
+						skippedQuestionID[m]=qi;
+						m++;
+						clearRadio();
+						qi=qi+1;
+						updateQuestionNo();
+						updateScore();
+						updateQuestion();
+						firstQuestion = false;
+					}
+		
+		
+	//}
 }
 
 function updateQuestionNo(){
@@ -109,6 +192,38 @@ function clearRadio(){
 	document.getElementById("r2").checked=false;
 	document.getElementById("r3").checked=false;
 	document.getElementById("r4").checked=false;
+}
+
+function evaluateSkippedQuestion(){
+
+	var radios = document.getElementsByName('a');
+	var rValue = "notchosen";	
+	for (var i = 0, length = radios.length; i < length; i++) {
+	    if (radios[i].checked) {
+	        rValue = radios[i].value;
+	        break;
+	    }
+	}
+	document.getElementById("rad").innerHTML = rValue;
+	 if(rValue=="notchosen"){
+		clearError();
+		showError("please select an option");
+		alert("please select an option");
+		return false;
+	 }
+	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){
+		 document.getElementById("resultsfunction").innerHTML = "Correct";
+	 	score=score + posMark;
+	 }
+	 else{
+		 document.getElementById("resultsfunction").innerHTML = "Incorrect";
+		 if(score-negMark >= 0){
+		 score = score - negMark;
+		 }
+	 }
+	 questions[qi].answered= questions[qi].options[rValue-1];
+	 questions[qi].attempted = true;
+	 return true;
 }
 
 function evaluate(){
@@ -234,9 +349,11 @@ var window_focus;
 $(document).ready(function(){
 	$(window).focus(function() {
 	    window_focus = true;
-	})
-	    .blur(function() {
-	        alert("dont try to cheat !");
+	});
+	$(window).blur(function() {
+		document.formex.action='testAction.action'; 
+		document.getElementById('statusVal').value = "tried_to_cheat";
+		document.formex.submit();
 	    });
 });
 
@@ -310,6 +427,7 @@ Do not reload or switch tabs. It will be considered as cheating.
 				</table>
 		<tr>
 			<td><input type="button" value="next" name="next" onclick="showQuestion()"></td>
+			<td><input type="button" value="skip" name="skip" onclick="showSkipQuestion()"></td>
 		</tr>
 	</table>
 
@@ -318,6 +436,7 @@ Do not reload or switch tabs. It will be considered as cheating.
 <s:form name="formex" action="testLevel1" method="post">
 	<s:hidden id="levelId" name="levelId"/>
 	<s:hidden id="scoreVal" name="score"/>
+	<s:hidden id="statusVal" name="statusTest"/>
 	<s:submit id="finish"  style="visibility:hidden" value="finish"/>
 </s:form>
 

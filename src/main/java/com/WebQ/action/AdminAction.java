@@ -44,7 +44,6 @@ public class AdminAction extends ActionSupport implements SessionAware {
 	    return ERROR;
 	}
     }
-
     public int getQuestionId() {
 	return questionId;
     }

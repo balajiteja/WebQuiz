@@ -30,6 +30,7 @@
 			<result name="start1">/loggedIn/testLevel1.jsp</result>
 			<result name="start2">/loggedIn/testLevel2.jsp</result>
 			<result name="start3">/loggedIn/testLevel3.jsp</result>
+			<result name="cheat">/loggedIn/welcomepage.jsp</result>
 			<result name="input">/loggedIn/welcomepage.jsp</result>
 			<result name="loginTimeout">
 				<param name="namespace">/jsp</param>

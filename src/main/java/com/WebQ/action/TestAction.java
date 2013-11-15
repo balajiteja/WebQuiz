@@ -19,6 +19,7 @@ public class TestAction extends ActionSupport implements SessionAware {
     private QuestionsCollection questionsCollection;
     private final RetrieveDbInfo retrieveDbInfo;
     private final Integer sc = new Integer(0);
+    private String statusTest;
 
     public RetrieveDbInfo getRetrieveDbInfo() {
 	return retrieveDbInfo;
@@ -38,16 +39,30 @@ public class TestAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() {
-	User user = (User) session.get("user");
-	if (user == null) {
-	    return "loginTimeout";
-	}
-	if (user != null) {
-	    // TO-DO Test logic here
-	    String status = user.getStatus();
-	    if (status == null) {
-		status = UserStatusConstants.USER_NULL;
-	    }
+   
+    	User user = (User) session.get("user");
+    	if (user == null) {
+    	    return "loginTimeout";
+    	}
+    	if (user != null) {
+    	    // TO-DO Test logic here
+    	    String status = user.getStatus();
+    	    if (status == null) {
+    		status = UserStatusConstants.USER_NULL;
+    	    }
+    	
+   if(statusTest != null) {	
+    if(statusTest.equals("tried_to_cheat")){
+    	questionsCollection = retrieveDbInfo.getLevelOneQuestions(user
+    			.getUserId());
+    		session.put("questions", questionsCollection);
+    		user.setStatus("tried_to_cheat");
+    		retrieveDbInfo.updateUserStatus(user.getUserId(),
+    			"tried_to_cheat");
+    		return "cheat";
+    }
+    	}
+   
 	    switch (status) {
 	    case UserStatusConstants.USER_NULL:
 		questionsCollection = retrieveDbInfo.getLevelOneQuestions(user
@@ -65,6 +80,14 @@ public class TestAction extends ActionSupport implements SessionAware {
 		retrieveDbInfo.updateUserStatus(user.getUserId(),
 			UserStatusConstants.USER_LEVEL_TWO_STARTED);
 		return "start2";
+	    case "Cheated":
+	    	questionsCollection = retrieveDbInfo.getLevelOneQuestions(user
+	    			.getUserId());
+	    		session.put("questions", questionsCollection);
+	    		user.setStatus("tried_to_cheat");
+	    		retrieveDbInfo.updateUserStatus(user.getUserId(),
+	    			"tried_to_cheat");
+	    		return "cheat";
 	    case UserStatusConstants.USER_LEVEL_TWO_COMPLETED:
 		questionsCollection = retrieveDbInfo
 			.getLevelThreeQuestions(user.getUserId());
@@ -108,5 +131,19 @@ public class TestAction extends ActionSupport implements SessionAware {
     public void setQuestionsCollection(QuestionsCollection questionsCollection) {
 	this.questionsCollection = questionsCollection;
     }
+
+	/**
+	 * @return the statusTest
+	 */
+	public String getStatusTest() {
+		return statusTest;
+	}
+
+	/**
+	 * @param statusTest the statusTest to set
+	 */
+	public void setStatusTest(String status) {
+		this.statusTest = status;
+	}
 
 }
