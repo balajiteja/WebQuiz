@@ -165,22 +165,22 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <sourceDirectory>c:\springsource\Programs\WQ\src\main\java</sourceDirectory>
-    <scriptSourceDirectory>c:\springsource\Programs\WQ\src\main\scripts</scriptSourceDirectory>
-    <testSourceDirectory>c:\springsource\Programs\WQ\src\test\java</testSourceDirectory>
-    <outputDirectory>c:\springsource\Programs\WQ\target\classes</outputDirectory>
-    <testOutputDirectory>c:\springsource\Programs\WQ\target\test-classes</testOutputDirectory>
+    <sourceDirectory>c:\ASEP project\WebQuiz\src\main\java</sourceDirectory>
+    <scriptSourceDirectory>c:\ASEP project\WebQuiz\src\main\scripts</scriptSourceDirectory>
+    <testSourceDirectory>c:\ASEP project\WebQuiz\src\test\java</testSourceDirectory>
+    <outputDirectory>c:\ASEP project\WebQuiz\target\classes</outputDirectory>
+    <testOutputDirectory>c:\ASEP project\WebQuiz\target\test-classes</testOutputDirectory>
     <resources>
       <resource>
-        <directory>c:\springsource\Programs\WQ\src\main\resources</directory>
+        <directory>c:\ASEP project\WebQuiz\src\main\resources</directory>
       </resource>
     </resources>
     <testResources>
       <testResource>
-        <directory>c:\springsource\Programs\WQ\src\test\resources</directory>
+        <directory>c:\ASEP project\WebQuiz\src\test\resources</directory>
       </testResource>
     </testResources>
-    <directory>c:\springsource\Programs\WQ\target</directory>
+    <directory>c:\ASEP project\WebQuiz\target</directory>
     <finalName>WQ</finalName>
     <pluginManagement>
       <plugins>
@@ -332,7 +332,7 @@
               <goal>site</goal>
             </goals>
             <configuration>
-              <outputDirectory>c:\springsource\Programs\WQ\target\site</outputDirectory>
+              <outputDirectory>c:\ASEP project\WebQuiz\target\site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -348,7 +348,7 @@
               <goal>deploy</goal>
             </goals>
             <configuration>
-              <outputDirectory>c:\springsource\Programs\WQ\target\site</outputDirectory>
+              <outputDirectory>c:\ASEP project\WebQuiz\target\site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -359,7 +359,7 @@
           </execution>
         </executions>
         <configuration>
-          <outputDirectory>c:\springsource\Programs\WQ\target\site</outputDirectory>
+          <outputDirectory>c:\ASEP project\WebQuiz\target\site</outputDirectory>
           <reportPlugins>
             <reportPlugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -381,13 +381,13 @@
           </execution>
         </executions>
         <configuration>
-          <argLine>-javaagent:C:\Users\Teja\AppData\Local\Temp\jacocoagent8977350704827772744.jar=destfile=target/jacoco.exec,excludes=*_javassist_*</argLine>
+          <argLine>-javaagent:C:\Users\arpit\AppData\Local\Temp\jacocoagent5274114275872174344.jar=destfile=target/jacoco.exec,excludes=*_javassist_*</argLine>
           <testFailureIgnore>true</testFailureIgnore>
         </configuration>
       </plugin>
     </plugins>
   </build>
   <reporting>
-    <outputDirectory>c:\springsource\Programs\WQ\target\site</outputDirectory>
+    <outputDirectory>c:\ASEP project\WebQuiz\target\site</outputDirectory>
   </reporting>
 </project>
