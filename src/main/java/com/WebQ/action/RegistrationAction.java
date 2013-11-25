@@ -20,6 +20,7 @@ public class RegistrationAction extends ActionSupport {
     private String firstName;
     private String lastName;
     private String emailId;
+    private String status;
     private final RetrieveDbInfo retrieveDbInfo;
 
     public RegistrationAction(RetrieveDbInfo retrieveDbInfo) {
@@ -53,7 +54,7 @@ public class RegistrationAction extends ActionSupport {
 
     private void addUserToDB() {
 	retrieveDbInfo.addUser(new User(userId, password, firstName, lastName,
-		emailId));
+		emailId, status));
     }
 
     private boolean validatePassword(String p1, String p2) {
@@ -111,5 +112,12 @@ public class RegistrationAction extends ActionSupport {
     public void setPassword2(String password2) {
 	this.password2 = password2;
     }
-
+    
+    public String getStatus(){
+    return status;
+    }
+    
+    public void setStatus(String status){
+    	this.status=null;
+    }
 }

@@ -15,7 +15,7 @@ public class ClearCacheInterceptor implements Interceptor {
      * 
      */
     private static final long serialVersionUID = 1L;
-
+    Logger logger = Logger.getLogger(ClearCacheInterceptor.class);
     @Override
     public void destroy() {
 	// TODO Auto-generated method stub
@@ -45,8 +45,10 @@ public class ClearCacheInterceptor implements Interceptor {
 	    Logger.getLogger(ClearCacheInterceptor.class).debug(
 		    "result" + result);
 	    return result;
+	
 	} catch (Exception e) {
-	    Logger.getLogger(ClearCacheInterceptor.class).error(e.toString());
+	
+	logger.error(e.toString());
 	}
 	return null;
     }

@@ -13,7 +13,6 @@ public final class DbConstants {
 	public static final String LEVEL_SCORE_TABLE = "levelscore";
 
 	// USER TABLE FIELDS
-	public static final String USER_NO = "userNo";
 	public static final String USER_ID = "userId";
 	public static final String PASSWORD = "password";
 	public static final String FIRST_NAME = "firstName";

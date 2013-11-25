@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="1" time="0.854" errors="0" skipped="0" tests="4" name="com.WebQ.action.RegistrationActionTest">
+<testsuite failures="1" time="0.61" errors="0" skipped="0" tests="4" name="com.WebQ.action.RegistrationActionTest">
   <properties>
     <property name="http.agent" value="Sonar Maven/3.1.1"/>
     <property name="ROOT_LOGGER_LEVEL" value="INFO"/>
@@ -63,10 +63,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.701" classname="com.WebQ.action.RegistrationActionTest" name="testEmptyFields"/>
-  <testcase time="0.076" classname="com.WebQ.action.RegistrationActionTest" name="testRedundantEntry"/>
-  <testcase time="0.039" classname="com.WebQ.action.RegistrationActionTest" name="testValidatePassword"/>
-  <testcase time="0.038" classname="com.WebQ.action.RegistrationActionTest" name="testValidEntry">
+  <testcase time="0.475" classname="com.WebQ.action.RegistrationActionTest" name="testEmptyFields"/>
+  <testcase time="0.054" classname="com.WebQ.action.RegistrationActionTest" name="testRedundantEntry"/>
+  <testcase time="0.041" classname="com.WebQ.action.RegistrationActionTest" name="testValidatePassword"/>
+  <testcase time="0.04" classname="com.WebQ.action.RegistrationActionTest" name="testValidEntry">
     <failure message="expected:&lt;success&gt; but was:&lt;input&gt;" type="junit.framework.ComparisonFailure">junit.framework.ComparisonFailure: expected:&lt;success&gt; but was:&lt;input&gt;
 	at junit.framework.Assert.assertEquals(Assert.java:81)
 	at junit.framework.Assert.assertEquals(Assert.java:87)

@@ -37,7 +37,7 @@ $(document).ready(function(){
 	var firstQuestion = true;
 	var posMark = 3;
 	var negMark = 0;
-	var count = 120;
+	var count = 180;
 	var testCompl = false;
 	var levelId = 1;
 	var skippedQuestionID = new Array();

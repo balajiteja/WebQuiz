@@ -1,11 +1,16 @@
+<%@page import="com.WebQ.db.RetrieveDbInfo"%>
 <%@page import="com.WebQ.beans.User"%>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.Map.Entry" %>
-<%@ page import="java.util.ArrayList" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Iterator" %>
+<%@page import="java.util.Map.Entry" %>
+<%@page import="java.util.ArrayList" %>
 <%@page import="com.WebQ.beans.Question"%>
 <%@page import="com.WebQ.beans.QuestionsCollection"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,29 +22,38 @@
 </script>
 <script>
 $(document).ready(function(){
+	
   $(window).blur(function(){
-    alert("Navigating away form this window will beconsidered as cheating");
+	document.formex.action='testAction.action'; 
+	document.getElementById('statusVal').value = "tried_to_cheat";
+	document.formex.submit();
   });
 });
 </script>
 <script>
 	var questions= new Array();
 	var qi = 0;
-	var score=0;
+	var score = 0;
 	var firstQuestion = true;
 	var posMark = 3;
 	var negMark = 1;
-	var count = 105;
+	var count = 150;
 	var testCompl = false;
 	var levelId = 2;
+	var skippedQuestionID = new Array();
+	var m = 0;
+	var k = 0;
+	var flag = false;
+	var total = 0;
 	
 	function populateQ(){
 
 	<% 
-	User u = (User)session.getAttribute("user");
+	
 	QuestionsCollection qc = (QuestionsCollection) session.getAttribute("questions");
 	ArrayList<Question> q = qc.getQuestions();
 	Integer sc = new Integer(0);
+	
 	%>
 	var j=0;
 	<%
@@ -64,24 +78,94 @@ $(document).ready(function(){
 	showQuestion();
 	}
 
-	function showQuestion(){
+function showQuestion(){
 	var ansd = true;
 	if(!firstQuestion)
 	{
-		ansd = evaluate();
+		document.getElementById("resultsfunction").innerHTML = "checking";
+		if(flag && total==10)
+			{
+			ansd=evaluateSkippedQuestion();
+			if(ansd)
+				{
+			clearError();
+			clearRadio();
+			displaySkippedQuestion();
+				}
+			}
+		else
+			{
+			total++;
+			ansd = evaluate();
+			}
+		
 	}
 	if(ansd){
-		clearError();
-		clearRadio();
-		updateQuestionNo();
-		if(qi>=questions.length){
-			showResults();
-			return;
-		}
-		updateScore();
-		updateQuestion();
-		firstQuestion = false;
+		
+			clearError();
+			clearRadio();
+			if(qi>=questions.length ){
+				displaySkippedQuestion();
+			}
+			updateQuestionNo();
+			updateScore();
+			updateQuestion();
+			firstQuestion = false;
 	}
+}
+
+function displaySkippedQuestion(){
+	flag=true;
+	document.getElementById("resultsfunction").innerHTML = "Reached";
+	$('input[name=skip]').hide();
+	var ansd = true;
+	//ansd = evaluateSkippedQuestion();
+	if(ansd){
+		
+			clearError();
+			clearRadio();
+			if(m>0)
+				{
+				qi=skippedQuestionID[m-1];
+				document.getElementById("resultsfunction").innerHTML = qi;
+				m--;
+				updateQuestionNo();
+				updateScore();
+				updateQuestion();
+				firstQuestion = false;
+				}
+			else{
+				showResults();
+			}
+	}
+}
+function showSkipQuestion(){
+	flag = true;
+	document.getElementById("resultsfunction").innerHTML = "Skipped";
+				if(skippedQuestionID.length>0 && qi>=questions.length-1)
+					{
+						total++;
+						skippedQuestionID[m]=qi;
+						m++;
+						qi= skippedQuestionID[m-1];
+						displaySkippedQuestion();
+						firstQuestion=false;
+					}
+				else if(qi<questions.length)
+					{
+						total++;
+						skippedQuestionID[m]=qi;
+						m++;
+						clearRadio();
+						qi=qi+1;
+						updateQuestionNo();
+						updateScore();
+						updateQuestion();
+						firstQuestion = false;
+					}
+		
+		
+	//}
 }
 
 function updateQuestionNo(){
@@ -94,7 +178,6 @@ function createQuestionTable(){
 }
 
 function updateQuestion(){
-	
 	document.getElementById("questionDesc").innerHTML= (qi+1)+":"+questions[qi].qDesc.toString() ;
 	for(var o=0;o<questions[qi].options.length;o++){
 	document.getElementById("option"+(o+1)).innerHTML= questions[qi].options[o];
@@ -111,6 +194,38 @@ function clearRadio(){
 	document.getElementById("r4").checked=false;
 }
 
+function evaluateSkippedQuestion(){
+
+	var radios = document.getElementsByName('a');
+	var rValue = "notchosen";	
+	for (var i = 0, length = radios.length; i < length; i++) {
+	    if (radios[i].checked) {
+	        rValue = radios[i].value;
+	        break;
+	    }
+	}
+	document.getElementById("rad").innerHTML = rValue;
+	 if(rValue=="notchosen"){
+		clearError();
+		showError("please select an option");
+		alert("please select an option");
+		return false;
+	 }
+	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){
+		 document.getElementById("resultsfunction").innerHTML = "Correct";
+	 	score=score + posMark;
+	 }
+	 else{
+		 document.getElementById("resultsfunction").innerHTML = "Incorrect";
+		 if(score-negMark >= 0){
+		 score = score - negMark;
+		 }
+	 }
+	 questions[qi].answered= questions[qi].options[rValue-1];
+	 questions[qi].attempted = true;
+	 return true;
+}
+
 function evaluate(){
 
 	var radios = document.getElementsByName('a');
@@ -124,8 +239,8 @@ function evaluate(){
 	document.getElementById("rad").innerHTML = rValue;
 	 if(rValue=="notchosen"){
 		clearError();
-		alert("please select an option");
 		showError("please select an option");
+		alert("please select an option");
 		return false;
 	 }
 	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){
@@ -204,10 +319,10 @@ function finish() {
  } 
 
 
-function countDown(){  
+function countDown(){
  if (count <=0){ 
 	  showResults();
- }else{  
+ }else{ 
 	 if(count<=10){
 		 document.getElementById("time").style.color="red";
 	 }
@@ -230,79 +345,89 @@ function countDown(){
  }  
 }  
 
+var window_focus;
+$(document).ready(function(){
+	$(window).focus(function() {
+	    window_focus = true;
+	});
+	$(window).blur(function() {
+		document.formex.action='testAction.action'; 
+		document.getElementById('statusVal').value = "tried_to_cheat";
+		document.formex.submit();
+	    });
+});
+
 </script>
+
 </head>
+
 <body>
-
-
 
 <div id="questions"></div>
 <div id="error"></div>
 <div id="result"></div>
 
-<button id="poplt" onclick="populateQ()">Start Test</button> 
+<div id="poplt">
+Do not reload or switch tabs. It will be considered as cheating.
+<button onclick="populateQ()">Start Test</button> 
+</div>
 
 <div id="testSec" style="visibility:hidden">
 	<table>
 		<tr>
-			<td width="100%">
-			
-				<form name="form1">
+			<td>
 				<table>
-						<tr>
-							<td>Score</td>
-							<td>Questions</td>
-							<td>radio</td>
-							<td>Previous Result</td>
-							<td>Time</td>
-		
-						</tr>
-						<tr>
-							<td><div id="score"></div></td>
-							<td><div id="noOfQ"></div></td>
-							<td><div id="rad"></div></td>
-							<td><div id="resultsfunction"></div></td>
-							<td><div id="time"></div></td>
-		
-						</tr>
-				</table>
-				<b>Select Correct Answer</b>
-					<table border="0" width="800px" cellspacing="2" cellpadding="2">
-						<tr>
-							<td width="50%">Question:</td>
-						</tr>
+					<tr>
+						<th>Score</th>
+						<th>Questions</th>
+						<th>radio</th>
+						<th>Previous Result</th>
+						<th>Time</th>
 	
-						<tr>
-							<td><div id="questionDesc"></div></td>
-						</tr>
-						
-						<tr>
-							<td>1: <input  type="radio" id="r1" name="a" value= "1" /></td>
-							<td><div id="option1"></div></td>
-						</tr> 
-		
-						<tr>
-							<td>2: <input  type="radio" id="r2" name="a" value="2" /></td>
-							<td><div id="option2"></div></td>
-						</tr>
-						
-						<tr>
-							<td>3: <input  type="radio" id="r3" name="a" value="3" /></td>
-							<td><div id="option3"></div></td>
-						</tr>
-						
-						<tr>
-							<td>4: <input  type="radio" id="r4" name="a" value="4" /></td>
-							<td><div id="option4"></div></td>
-						</tr>
-						
-						<tr>
-							<td><center><input type="button" value="next" name="next" onclick="showQuestion()"></center></td>
-						</tr>
-					</table>
-				
-				</form>
-			</td>
+					</tr>
+					<tr>
+						<td><div id="score"></div></td>
+						<td><div id="noOfQ"></div></td>
+						<td><div id="rad"></div></td>
+						<td><div id="resultsfunction"></div></td>
+						<td><div id="time"></div></td>
+	
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>Question:</td>
+					</tr>
+
+					<tr>
+						<td width="100%"><div id="questionDesc"></div></td>
+					</tr>
+				</table>
+				<table>	
+					<tr>
+						<td><input  type="radio" id="r1" name="a" value= "1" /></td>
+						<td><div id="option1"></div></td>
+					</tr> 
+	
+					<tr>
+						<td><input  type="radio" id="r2" name="a" value="2" /></td>
+						<td><div id="option2"></div></td>
+					</tr>
+					
+					<tr>
+						<td><input  type="radio" id="r3" name="a" value="3" /></td>
+						<td><div id="option3"></div></td>
+					</tr>
+					
+					<tr>
+						<td><input  type="radio" id="r4" name="a" value="4" /></td>
+						<td><div id="option4"></div></td>
+					</tr>
+					
+				</table>
+		<tr>
+			<td><input type="button" value="next" name="next" onclick="showQuestion()"></td>
+			<td><input type="button" value="skip" name="skip" onclick="showSkipQuestion()"></td>
 		</tr>
 	</table>
 
@@ -311,6 +436,7 @@ function countDown(){
 <s:form name="formex" action="testLevel1" method="post">
 	<s:hidden id="levelId" name="levelId"/>
 	<s:hidden id="scoreVal" name="score"/>
+	<s:hidden id="statusVal" name="statusTest"/>
 	<s:submit id="finish"  style="visibility:hidden" value="finish"/>
 </s:form>
 
