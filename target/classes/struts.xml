@@ -123,7 +123,6 @@
 		<!-- ######################## REGISTRATION -ACTION ########################-->
 		
 		<action name="registrationAction" class="registrationAction">
-			<interceptor-ref name="regAuthenticationInterceptor"/>
 			<result name="loggedIn" type="redirectAction">
 				<param name="namespace">/loggedIn</param>
 				<param name="actionName">welcome</param>
