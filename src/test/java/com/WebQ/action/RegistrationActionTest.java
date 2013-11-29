@@ -1,9 +1,9 @@
-package com.WebQ.action;
+package com.webq.action;
 
 import junit.framework.TestCase;
 
-import com.WebQ.beans.User;
-import com.WebQ.db.RetrieveDbInfo;
+import com.webq.beans.User;
+import com.webq.db.RetrieveDbInfo;
 
 public class RegistrationActionTest extends TestCase {
     private static RegistrationAction registrationAction;

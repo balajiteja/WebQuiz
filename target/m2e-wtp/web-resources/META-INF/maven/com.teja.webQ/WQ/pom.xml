@@ -4,12 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.teja.webQ</groupId>
+	<groupId>com.teja.webq</groupId>
 	<artifactId>WQ</artifactId>
 	<packaging>war</packaging>
 	<version>2.3.15.2</version>
 	<name>Struts 2 Starter</name>
-	<url>http://www.myComp.com</url>
+	<url>http://www.quiz.com</url>
 	<description>Struts 2 Starter</description>
 
     <properties>

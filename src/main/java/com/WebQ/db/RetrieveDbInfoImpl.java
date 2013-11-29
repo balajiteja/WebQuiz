@@ -1,4 +1,4 @@
-package com.WebQ.db;
+package com.webq.db;
 
 public interface RetrieveDbInfoImpl {
     public void init();

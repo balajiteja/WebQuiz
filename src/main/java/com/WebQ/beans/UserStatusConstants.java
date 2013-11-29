@@ -1,4 +1,4 @@
-package com.WebQ.beans;
+package com.webq.beans;
 
 public final class UserStatusConstants {
 

@@ -1,10 +1,10 @@
 
-<%@page import="com.WebQ.beans.User"%>
+<%@page import="com.webq.beans.User"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
 <%@ page import="org.apache.struts2.ServletActionContext" %>
 <%@ page import="org.springframework.web.context.WebApplicationContext" %>
 <%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
-<%@ page import="com.WebQ.db.RetrieveDbInfo" %>
+<%@ page import="com.webq.db.RetrieveDbInfo" %>
 <head>
 <script type="text/javascript" src="js/security.js"></script>
 <script type="text/javascript">

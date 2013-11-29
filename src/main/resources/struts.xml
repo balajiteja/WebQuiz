@@ -15,9 +15,9 @@
 		<!-- ########################### INTERCEPTORS ###########################-->
 
 		<interceptors>
-			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+			<interceptor name="clear-cache" class="com.webq.interceptors.ClearCacheInterceptor"/>
 			
-			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			<interceptor name="authenticationInterceptor" class="com.webq.interceptors.AuthenticationInterceptor"/>
 			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>
@@ -107,12 +107,12 @@
 		
 		<!-- ########################### INTERCEPTORS ###########################-->
 		<interceptors>
-			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+			<interceptor name="clear-cache" class="com.webq.interceptors.ClearCacheInterceptor"/>
 		
-			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			<interceptor name="authenticationInterceptor" class="com.webq.interceptors.AuthenticationInterceptor"/>
 			
-			<interceptor name="regAuthenticationInterceptor" class="com.WebQ.interceptors.RegAuthenticationInterceptor"/>
-			<interceptor name="loginAuthenticationInterceptor" class="com.WebQ.interceptors.LoginAuthenticationInterceptor"/>
+			<interceptor name="regAuthenticationInterceptor" class="com.webq.interceptors.RegAuthenticationInterceptor"/>
+			<interceptor name="loginAuthenticationInterceptor" class="com.webq.interceptors.LoginAuthenticationInterceptor"/>
 			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>

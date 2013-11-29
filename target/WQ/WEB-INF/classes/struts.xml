@@ -15,9 +15,9 @@
 		<!-- ########################### INTERCEPTORS ###########################-->
 
 		<interceptors>
-			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+			<interceptor name="clear-cache" class="com.webq.interceptors.ClearCacheInterceptor"/>
 			
-			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			<interceptor name="authenticationInterceptor" class="com.webq.interceptors.AuthenticationInterceptor"/>
 			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>
@@ -30,6 +30,7 @@
 			<result name="start1">/loggedIn/testLevel1.jsp</result>
 			<result name="start2">/loggedIn/testLevel2.jsp</result>
 			<result name="start3">/loggedIn/testLevel3.jsp</result>
+			<result name="cheat">/loggedIn/welcomepage.jsp</result>
 			<result name="input">/loggedIn/welcomepage.jsp</result>
 			<result name="loginTimeout">
 				<param name="namespace">/jsp</param>
@@ -106,12 +107,12 @@
 		
 		<!-- ########################### INTERCEPTORS ###########################-->
 		<interceptors>
-			<interceptor name="clear-cache" class="com.WebQ.interceptors.ClearCacheInterceptor"/>
+			<interceptor name="clear-cache" class="com.webq.interceptors.ClearCacheInterceptor"/>
 		
-			<interceptor name="authenticationInterceptor" class="com.WebQ.interceptors.AuthenticationInterceptor"/>
+			<interceptor name="authenticationInterceptor" class="com.webq.interceptors.AuthenticationInterceptor"/>
 			
-			<interceptor name="regAuthenticationInterceptor" class="com.WebQ.interceptors.RegAuthenticationInterceptor"/>
-			<interceptor name="loginAuthenticationInterceptor" class="com.WebQ.interceptors.LoginAuthenticationInterceptor"/>
+			<interceptor name="regAuthenticationInterceptor" class="com.webq.interceptors.RegAuthenticationInterceptor"/>
+			<interceptor name="loginAuthenticationInterceptor" class="com.webq.interceptors.LoginAuthenticationInterceptor"/>
 			
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor"/>
@@ -122,7 +123,6 @@
 		<!-- ######################## REGISTRATION -ACTION ########################-->
 		
 		<action name="registrationAction" class="registrationAction">
-			<interceptor-ref name="regAuthenticationInterceptor"/>
 			<result name="loggedIn" type="redirectAction">
 				<param name="namespace">/loggedIn</param>
 				<param name="actionName">welcome</param>

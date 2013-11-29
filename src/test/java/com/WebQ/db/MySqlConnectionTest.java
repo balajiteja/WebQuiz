@@ -1,4 +1,4 @@
-package com.WebQ.db;
+package com.webq.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import junit.framework.TestCase;
 
-import com.WebQ.beans.User;
+import com.webq.beans.User;
 
 public class MySqlConnectionTest extends TestCase {
 

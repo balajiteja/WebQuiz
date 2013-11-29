@@ -1,14 +1,14 @@
-package com.WebQ.action;
+package com.webq.action;
 
 import java.util.Map;
 import java.util.Timer;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.WebQ.beans.QuestionsCollection;
-import com.WebQ.beans.User;
-import com.WebQ.beans.UserStatusConstants;
-import com.WebQ.db.RetrieveDbInfo;
+import com.webq.beans.QuestionsCollection;
+import com.webq.beans.User;
+import com.webq.beans.UserStatusConstants;
+import com.webq.db.RetrieveDbInfo;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TestCompleteAction extends ActionSupport implements SessionAware {

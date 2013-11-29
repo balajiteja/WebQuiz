@@ -1,11 +1,11 @@
-<%@page import="com.WebQ.db.RetrieveDbInfo"%>
-<%@page import="com.WebQ.beans.User"%>
+<%@page import="com.webq.db.RetrieveDbInfo"%>
+<%@page import="com.webq.beans.User"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Iterator" %>
 <%@page import="java.util.Map.Entry" %>
 <%@page import="java.util.ArrayList" %>
-<%@page import="com.WebQ.beans.Question"%>
-<%@page import="com.WebQ.beans.QuestionsCollection"%>
+<%@page import="com.webq.beans.Question"%>
+<%@page import="com.webq.beans.QuestionsCollection"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
@@ -21,14 +21,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 </script>
 <script>
-$(document).ready(function(){
-	
-  $(window).blur(function(){
-	document.formex.action='testAction.action'; 
-	document.getElementById('statusVal').value = "tried_to_cheat";
-	document.formex.submit();
-  });
-});
 </script>
 <script>
 	var questions= new Array();
@@ -208,7 +200,6 @@ function evaluateSkippedQuestion(){
 	 if(rValue=="notchosen"){
 		clearError();
 		showError("please select an option");
-		alert("please select an option");
 		return false;
 	 }
 	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){
@@ -240,7 +231,6 @@ function evaluate(){
 	 if(rValue=="notchosen"){
 		clearError();
 		showError("please select an option");
-		alert("please select an option");
 		return false;
 	 }
 	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){
@@ -271,12 +261,15 @@ function clearError(){
 	errorDiv.innerHTML = "";
 }
 
-function showResults(){
+function prepareResultDisplay(){
 		document.getElementById("testSec").style.visibility = "hidden";
+		document.getElementById("form1").style.visibility = "visible";
 		document.getElementById("finish").style.visibility = "visible";
 		document.getElementById('scoreVal').value = parseInt(score);
 		document.getElementById('levelId').value = parseInt(levelId);
-		
+}
+function showResults(){
+		prepareResultDisplay();
 		var result = document.getElementById("result");
 		var div3 = document.createElement("h2");
 		testCompl = true;
@@ -351,6 +344,7 @@ $(document).ready(function(){
 	    window_focus = true;
 	});
 	$(window).blur(function() {
+		alert("You are trying to cheat");
 		document.formex.action='testAction.action'; 
 		document.getElementById('statusVal').value = "tried_to_cheat";
 		document.formex.submit();
@@ -427,13 +421,15 @@ Do not reload or switch tabs. It will be considered as cheating.
 				</table>
 		<tr>
 			<td><input type="button" value="next" name="next" onclick="showQuestion()"></td>
+		</tr>
+		<tr>
 			<td><input type="button" value="skip" name="skip" onclick="showSkipQuestion()"></td>
 		</tr>
 	</table>
 
 </div>
 
-<s:form name="formex" action="testLevel1" method="post">
+<s:form id="form1" name="formex" action="testLevel1" method="post" style="visibility:hidden">
 	<s:hidden id="levelId" name="levelId"/>
 	<s:hidden id="scoreVal" name="score"/>
 	<s:hidden id="statusVal" name="statusTest"/>

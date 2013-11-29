@@ -1,10 +1,10 @@
-package com.WebQ.beans;
+package com.webq.beans;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-import com.WebQ.db.RetrieveDbInfo;
+import com.webq.db.RetrieveDbInfo;
 
 public class QuestionsCollection {
     private static RetrieveDbInfo retrieveDbInfo;

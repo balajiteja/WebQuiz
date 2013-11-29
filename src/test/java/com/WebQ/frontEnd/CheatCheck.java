@@ -5,7 +5,7 @@
  * @author Teja
  *
  */
-package com.WebQ.frontEnd;
+package com.webq.frontEnd;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

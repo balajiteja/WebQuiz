@@ -1,4 +1,4 @@
-package com.WebQ.beans;
+package com.webq.beans;
 
 public class LevelScore {
     private int levelId;

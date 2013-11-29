@@ -1,4 +1,4 @@
-package com.WebQ.interceptors;
+package com.webq.interceptors;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

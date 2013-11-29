@@ -1,11 +1,11 @@
-package com.WebQ.action;
+package com.webq.action;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import junit.framework.TestCase;
 
-import com.WebQ.beans.User;
+import com.webq.beans.User;
 
 public class LoginActionTest extends TestCase {
     private static LoginAction testLoginAction;

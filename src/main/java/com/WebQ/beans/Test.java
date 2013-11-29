@@ -1,4 +1,4 @@
-package com.WebQ.beans;
+package com.webq.beans;
 
 import java.util.Date;
 import java.util.Timer;

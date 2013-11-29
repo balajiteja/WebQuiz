@@ -6,14 +6,14 @@
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
  
     <!-- Test class -->
-	<bean name="test" id="test" class="com.WebQ.beans.Test" scope="singleton" init-method="init"/>
+	<bean name="test" id="test" class="com.webq.beans.Test" scope="singleton" init-method="init"/>
 	 
 	<!-- Questions collection class -->
-	<bean name="questionsCollection" id="questionsCollection" class="com.WebQ.beans.QuestionsCollection" init-method="init"/>
+	<bean name="questionsCollection" id="questionsCollection" class="com.webq.beans.QuestionsCollection" init-method="init"/>
     
     <!-- Database module -->
 	    
-    <bean name="retrieveDbInfo" id="db" class="com.WebQ.db.RetrieveDbInfo" scope="singleton" init-method="init"/>
+    <bean name="retrieveDbInfo" id="db" class="com.webq.db.RetrieveDbInfo" scope="singleton" init-method="init"/>
     
     
     

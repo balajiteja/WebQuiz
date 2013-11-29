@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.WebQ.spring.SpringTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec <<< FAILURE!
-testSpringTest(com.WebQ.spring.SpringTest)  Time elapsed: 0 sec  <<< ERROR!
-java.lang.NullPointerException
-	at org.apache.struts2.ServletActionContext.getServletContext(ServletActionContext.java:139)
-	at com.WebQ.spring.SpringTest.testSpringTest(SpringTest.java:17)
-

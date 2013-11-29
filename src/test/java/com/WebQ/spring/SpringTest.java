@@ -1,4 +1,4 @@
-package com.WebQ.spring;
+package com.webq.spring;
 
 import junit.framework.TestCase;
 
@@ -6,7 +6,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.WebQ.db.RetrieveDbInfo;
+import com.webq.db.RetrieveDbInfo;
 
 public class SpringTest extends TestCase {
 

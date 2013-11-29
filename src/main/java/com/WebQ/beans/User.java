@@ -1,4 +1,4 @@
-package com.WebQ.beans;
+package com.webq.beans;
 
 import java.util.HashMap;
 import java.util.Map;

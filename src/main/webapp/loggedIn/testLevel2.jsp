@@ -1,11 +1,11 @@
-<%@page import="com.WebQ.db.RetrieveDbInfo"%>
-<%@page import="com.WebQ.beans.User"%>
+<%@page import="com.webq.db.RetrieveDbInfo"%>
+<%@page import="com.webq.beans.User"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Iterator" %>
 <%@page import="java.util.Map.Entry" %>
 <%@page import="java.util.ArrayList" %>
-<%@page import="com.WebQ.beans.Question"%>
-<%@page import="com.WebQ.beans.QuestionsCollection"%>
+<%@page import="com.webq.beans.Question"%>
+<%@page import="com.webq.beans.QuestionsCollection"%>
 <%@ include file="/Taglib/taglibs.jsp" %>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>

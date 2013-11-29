@@ -1,4 +1,4 @@
-package com.WebQ.action;
+package com.webq.action;
 
 import junit.framework.TestCase;
 

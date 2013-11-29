@@ -1,10 +1,10 @@
-package com.WebQ.action;
+package com.webq.action;
 
 import java.util.HashMap;
 
 import junit.framework.TestCase;
 
-import com.WebQ.beans.User;
+import com.webq.beans.User;
 
 public class LogoutActionTest extends TestCase {
     private static LogoutAction testLogoutAction;

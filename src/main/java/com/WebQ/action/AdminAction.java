@@ -1,11 +1,11 @@
-package com.WebQ.action;
+package com.webq.action;
 
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.WebQ.beans.Question;
-import com.WebQ.db.RetrieveDbInfo;
+import com.webq.beans.Question;
+import com.webq.db.RetrieveDbInfo;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 
