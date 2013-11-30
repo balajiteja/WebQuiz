@@ -208,7 +208,6 @@ function evaluateSkippedQuestion(){
 	 if(rValue=="notchosen"){
 		clearError();
 		showError("please select an option");
-		alert("please select an option");
 		return false;
 	 }
 	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){
@@ -240,7 +239,6 @@ function evaluate(){
 	 if(rValue=="notchosen"){
 		clearError();
 		showError("please select an option");
-		alert("please select an option");
 		return false;
 	 }
 	 if(questions[qi].options[rValue-1]==questions[qi].answer || rValue== parseInt(questions[qi].answer)){

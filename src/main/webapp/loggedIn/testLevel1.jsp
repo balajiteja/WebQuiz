@@ -111,7 +111,6 @@ function displaySkippedQuestion(){
 	document.getElementById("resultsfunction").innerHTML = "Reached";
 	$('input[name=skip]').hide();
 	var ansd = true;
-	//ansd = evaluateSkippedQuestion();
 	if(ansd){
 		
 			clearError();
@@ -263,6 +262,7 @@ function clearError(){
 
 function prepareResultDisplay(){
 		document.getElementById("testSec").style.visibility = "hidden";
+		document.getElementById("error").style.visibility = "hidden";
 		document.getElementById("form1").style.visibility = "visible";
 		document.getElementById("finish").style.visibility = "visible";
 		document.getElementById('scoreVal').value = parseInt(score);
@@ -301,15 +301,14 @@ function showResults(){
 }
 
 function logout() {
-	
     document.forms[0].action='logoutAction.action';  
     document.forms[0].submit();  
- } 
+ }
  
 function finish() {
     document.forms[0].action='testLevel1.action';  
     document.forms[0].submit();  
- } 
+}
 
 
 function countDown(){
