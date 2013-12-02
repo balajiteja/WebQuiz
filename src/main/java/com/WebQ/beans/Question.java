@@ -15,7 +15,7 @@ public class Question {
 	return questionId;
     }
 
-    public Question(int questionId, int levelId, String questionDescription,
+    public Question(int questionId, int levelId, String questionDescription, //NOSONAR
 	    String option1, String option2, String option3, String option4,
 	    String answer) {
 	super();

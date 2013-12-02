@@ -5,7 +5,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.teja.webq</groupId>
-	<artifactId>WQ</artifactId>
+	<artifactId>wq</artifactId>
 	<packaging>war</packaging>
 	<version>2.3.15.2</version>
 	<name>Struts 2 Starter</name>
@@ -142,7 +142,7 @@
 	</dependencies>
 	
     <build>
-      <finalName>WQ</finalName>
+      <finalName>wq</finalName>
     	<plugins>
     		<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>

@@ -51,7 +51,7 @@ $(document).ready(function(){
 	<% 
 	
 	QuestionsCollection qc = (QuestionsCollection) session.getAttribute("questions");
-	ArrayList<Question> q = qc.getQuestions();
+	List<Question> q = qc.getQuestions();
 	Integer sc = new Integer(0);
 	
 	%>
@@ -170,11 +170,6 @@ function showSkipQuestion(){
 
 function updateQuestionNo(){
 	document.getElementById("noOfQ").innerHTML= "questions: "+(qi+1)+"/"+(questions.length);
-}
-
-function createQuestionTable(){
-	var qTable = document.createElement("table");
-	
 }
 
 function updateQuestion(){
@@ -371,9 +366,9 @@ Do not reload or switch tabs. It will be considered as cheating.
 </div>
 
 <div id="testSec" style="visibility:hidden">
-	<table>
-		<tr>
-			<td>
+	
+		
+			
 				<table>
 					<tr>
 						<th>Score</th>
@@ -423,11 +418,11 @@ Do not reload or switch tabs. It will be considered as cheating.
 					</tr>
 					
 				</table>
-		<tr>
-			<td><input type="button" value="next" name="next" onclick="showQuestion()"></td>
-			<td><input type="button" value="skip" name="skip" onclick="showSkipQuestion()"></td>
-		</tr>
-	</table>
+		
+			<input type="button" value="next" name="next" onclick="showQuestion()">
+			<input type="button" value="skip" name="skip" onclick="showSkipQuestion()">
+		
+	
 
 </div>
 

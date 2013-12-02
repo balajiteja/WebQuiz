@@ -11,4 +11,4 @@
 <title>Logout</title>
 </head>
 
-Thank you.
+<div id="thankyou">Thank you.</div>

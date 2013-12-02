@@ -51,7 +51,7 @@ $(document).ready(function(){
 	<% 
 	
 	QuestionsCollection qc = (QuestionsCollection) session.getAttribute("questions");
-	ArrayList<Question> q = qc.getQuestions();
+	List<Question> q = qc.getQuestions();
 	Integer sc = new Integer(0);
 	
 	%>
@@ -170,11 +170,6 @@ function showSkipQuestion(){
 
 function updateQuestionNo(){
 	document.getElementById("noOfQ").innerHTML= "questions: "+(qi+1)+"/"+(questions.length);
-}
-
-function createQuestionTable(){
-	var qTable = document.createElement("table");
-	
 }
 
 function updateQuestion(){

@@ -18,7 +18,7 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	private Connection connection;
 	
 	public RetrieveDbInfo() {
-		init();
+		init(); // NOSONAR
 	}
 	
 	public boolean containsUser(String userId) throws SQLException {
@@ -101,7 +101,7 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	}
 	
 	private ResultSet getResultSet(String table, String field1, String value) {
-		ResultSet resultSet = null;
+		ResultSet resultSet = null; // NOSONAR
 		// Select * from [table] where [field1]="[value]"; //NOSONAR
 		try {
 			resultSet = statement.executeQuery("SELECT * FROM " + table
@@ -115,7 +115,7 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 	}
 	
 	private ResultSet getResultSet(String table, String field1, int value) {
-		ResultSet resultSet = null;
+		ResultSet resultSet = null; // NOSONAR
 		// Select * from [table] where [field1]="[value]"; //NOSONAR
 		try {
 			resultSet = statement.executeQuery("SELECT * FROM " + table
@@ -125,6 +125,7 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 		} catch (Exception e) { // NOSONAR
 			Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 		}
+		
 		return resultSet;
 	}
 	
@@ -271,11 +272,7 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 		} catch (Exception e) { // NOSONAR
 			Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 		}
-		if (i == 1) {
-			return true;
-		} else {
-			return false;
-		}
+		return i == 1;
 	}
 	
 	public boolean updateUserScore(String userId, int levelId, int score) {
@@ -292,11 +289,23 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 		} catch (Exception e) { // NOSONAR
 			Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 		}
-		if (i == 1) {
-			return true;
-		} else {
-			return false;
+		return i == 1;
+	}
+	
+	public boolean deleteFromTable(String table, String column, String value) {
+		int i = 0;
+		// Select * from [table]; //NOSONAR
+		try {
+			String queryString = "DELETE FROM " + table + " WHERE " + column
+					+ " = '" + value + "'";
+			i = statement.executeUpdate(queryString);
+			
+		} catch (SQLException e) { // NOSONAR
+			Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
+		} catch (Exception e) { // NOSONAR
+			Logger.getLogger(RetrieveDbInfo.class).error(e.toString());
 		}
+		return i == 1;
 	}
 	
 	public static void main(String[] args) {
@@ -313,7 +322,7 @@ public class RetrieveDbInfo implements RetrieveDbInfoImpl {
 		question.setOption4("unconditionally …… extent");
 		question.setAnswer("2");
 		
-		System.out.println(rb.addQuestion(question));
+		System.out.println(rb.addQuestion(question)); // NOSONAR
 		
 	}
 	

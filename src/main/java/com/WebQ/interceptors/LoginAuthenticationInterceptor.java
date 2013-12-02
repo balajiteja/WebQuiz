@@ -4,11 +4,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.webq.beans.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.Interceptor;
+import com.webq.beans.User;
 
 public class LoginAuthenticationInterceptor implements Interceptor {
 	
@@ -19,12 +19,14 @@ public class LoginAuthenticationInterceptor implements Interceptor {
 	
 	@Override
 	public void destroy() {
-		System.out.println("Destroying MyLoggingInterceptor...");
+		Logger.getLogger(LoginAuthenticationInterceptor.class).debug(
+				"Destroying MyLoggingInterceptor...");
 	}
 	
 	@Override
 	public void init() {
-		System.out.println("Initializing  MyLoggingInterceptor...");
+		Logger.getLogger(LoginAuthenticationInterceptor.class).debug(
+				"Initializing  MyLoggingInterceptor...");
 	}
 	
 	@Override
@@ -37,11 +39,13 @@ public class LoginAuthenticationInterceptor implements Interceptor {
 			String className = actionInvocation.getAction().getClass()
 					.getName();
 			long startTime = System.currentTimeMillis();
-			System.out.println("Before calling action: " + className);
+			Logger.getLogger(LoginAuthenticationInterceptor.class).debug(
+					"Before calling action: " + className);
 			
 			long endTime = System.currentTimeMillis();
-			System.out.println("After calling action: " + className
-					+ " Time taken: " + (endTime - startTime) + " ms");
+			Logger.getLogger(LoginAuthenticationInterceptor.class).debug(
+					"After calling action: " + className + " Time taken: "
+							+ (endTime - startTime) + " ms");
 			
 			User user = (User) session.get("user");
 			if (user == null) {

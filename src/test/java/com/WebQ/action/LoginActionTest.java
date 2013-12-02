@@ -5,6 +5,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
+import com.webq.action.LoginAction;
 import com.webq.beans.User;
 
 public class LoginActionTest extends TestCase {

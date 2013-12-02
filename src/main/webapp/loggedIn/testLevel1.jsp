@@ -43,7 +43,7 @@
 	<% 
 	
 	QuestionsCollection qc = (QuestionsCollection) session.getAttribute("questions");
-	ArrayList<Question> q = qc.getQuestions();
+	List<Question> q = qc.getQuestions();
 	Integer sc = new Integer(0);
 	
 	%>
@@ -161,11 +161,6 @@ function showSkipQuestion(){
 
 function updateQuestionNo(){
 	document.getElementById("noOfQ").innerHTML= "questions: "+(qi+1)+"/"+(questions.length);
-}
-
-function createQuestionTable(){
-	var qTable = document.createElement("table");
-	
 }
 
 function updateQuestion(){
@@ -343,11 +338,13 @@ $(document).ready(function(){
 	    window_focus = true;
 	});
 	$(window).blur(function() {
+		if(!testCompl){
 		alert("You are trying to cheat");
 		document.formex.action='testAction.action'; 
 		document.getElementById('statusVal').value = "tried_to_cheat";
 		document.formex.submit();
-	    });
+		}
+		});
 });
 
 </script>
@@ -366,9 +363,7 @@ Do not reload or switch tabs. It will be considered as cheating.
 </div>
 
 <div id="testSec" style="visibility:hidden">
-	<table>
-		<tr>
-			<td>
+	
 				<table>
 					<tr>
 						<th>Score</th>
@@ -418,22 +413,18 @@ Do not reload or switch tabs. It will be considered as cheating.
 					</tr>
 					
 				</table>
-		<tr>
-			<td><input type="button" value="next" name="next" onclick="showQuestion()"></td>
-		</tr>
-		<tr>
-			<td><input type="button" value="skip" name="skip" onclick="showSkipQuestion()"></td>
-		</tr>
-	</table>
+			<input type="button" value="next" name="next" onclick="showQuestion()">
+			<input type="button" value="skip" name="skip" onclick="showSkipQuestion()">
+	
 
 </div>
 
-<s:form id="form1" name="formex" action="testLevel1" method="post" style="visibility:hidden">
-	<s:hidden id="levelId" name="levelId"/>
-	<s:hidden id="scoreVal" name="score"/>
-	<s:hidden id="statusVal" name="statusTest"/>
-	<s:submit id="finish"  style="visibility:hidden" value="finish"/>
-</s:form>
+<form id="form1" name="formex" action="testLevel1" method="post" style="visibility:hidden">
+	<label id="levelId" style="visibility:hidden"></label>
+	<label id="scoreVal" style="visibility:hidden"></label>
+	<label id="statusVal" style="visibility:hidden"></label>
+	<button type="submit" id="finish"  style="visibility:hidden" value="finish"></button>
+</form>
 
 </body>
 </html>

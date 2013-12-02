@@ -1,6 +1,10 @@
 package com.webq.db;
 
 public final class DbConstants {
+	private DbConstants() {
+		
+	}
+	
 	// DB configuration constants
 	public static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
 	public static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/webquizdb";
@@ -34,10 +38,5 @@ public final class DbConstants {
 	// USER_ID already mentioned above
 	// LEVEL_ID already mentioned above
 	public static final String SCORE = "score";
-	
-	public DbConstants() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
 }

@@ -2,10 +2,10 @@ package com.webq.action;
 
 import org.apache.log4j.Logger;
 
-import com.webq.beans.User;
-import com.webq.db.RetrieveDbInfo;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.webq.beans.User;
+import com.webq.db.RetrieveDbInfo;
 
 public class RegistrationAction extends ActionSupport {
 	
@@ -26,9 +26,6 @@ public class RegistrationAction extends ActionSupport {
 	public RegistrationAction(RetrieveDbInfo retrieveDbInfo) {
 		super();
 		this.retrieveDbInfo = retrieveDbInfo;
-	}
-	
-	public void init() {
 	}
 	
 	@Override

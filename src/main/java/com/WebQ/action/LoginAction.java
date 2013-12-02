@@ -7,9 +7,9 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.webq.beans.User;
 import com.webq.db.RetrieveDbInfo;
-import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 	/**
@@ -26,9 +26,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	
 	public LoginAction(RetrieveDbInfo retrieveDbInfo) {
 		this.retrieveDbInfo = retrieveDbInfo;
-	}
-	
-	public void init() {
 	}
 	
 	public String getUserId() {
@@ -89,7 +86,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		if (user != null) {
 			return SUCCESS;
 		} else {
-			if (userId.equals("admin") && password.equals("admin")) {
+			if ("admin".equals(userId) && "admin".equals(password)) {
 				session.put("admin", new User("admin", "admin"));
 				return "admin";
 			}

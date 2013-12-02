@@ -47,19 +47,10 @@
 	<!-- logout Action -->
 	<bean id="logoutAction" class="com.webq.action.LogoutAction" singleton="false" />
 
-
-	<!-- index action -->
-	<bean id="indexAction" class="WQ.IndexAction" singleton="false"/>
-	
-	<!-- Example of SAF2 action instantiated by Spring -->
-    <bean id="helloWorldAction" class="WQ.HelloWorldAction" singleton="false" />
-    
 	<!-- Database module -->
-	    
     <bean name="retrieveDbInfo" id="db" class="com.webq.db.RetrieveDbInfo" singleton="true" init-method="init"/>
     
     <!-- BEANS -->
-    
     
     <!-- Test class -->
 	<bean name="test" id="test" class="com.webq.beans.Test" singleton="true" init-method="init"/>

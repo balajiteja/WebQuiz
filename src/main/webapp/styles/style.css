@@ -23,7 +23,6 @@ time {
 
 /* Global properties ======================================================== */
 body { 
-	background:#fff; 
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:100%; 
 	line-height:1em;
@@ -51,7 +50,7 @@ body {
 	/* Header */
 	header {
 		background:url(../images/header-bg.jpg) no-repeat center top;
-		min-width:940px;
+		min-width:400px;
 	}
 		header .container {
 			height:194px;
@@ -381,9 +380,19 @@ header .nav-bg {
 	background:url(../images/nav-bg.png) no-repeat center top;
 }
 header nav {
+	background: transparent;
 	position:absolute;
 	left:0;
 	top:3px;
+	background: radial-gradient(farthest-corner, grey, black) repeat scroll 0% 0% padding-box rgb(63, 101, 183);
+    background-color: rgb(63, 101, 183);
+    background-image: radial-gradient(farthest-corner, grey, black);
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    background-clip: padding-box;
+    background-origin: padding-box;
+    background-size: auto auto;
 }
 	header nav ul li {
 		float:left;
@@ -391,14 +400,13 @@ header nav {
 		line-height:1.2em;
 		text-transform:uppercase;
 		padding-right:1px;
-		background:url(../images/divider.gif) repeat-y right top;
 	}
 	header nav ul li.last {
 		background:none;
 		padding:0;
 	}
 		header nav ul li a {
-			color:#454545;
+			color:white	;
 			text-decoration:none;
 			display:block;
 			float:left;

@@ -29,16 +29,6 @@
     }
 </script>
 <decorator:head/>
-<!--[if lt IE 7]>
-     <link rel="stylesheet" href="css/ie/ie6.css" type="text/css" media="screen">
-     <script type="text/javascript" src="js/ie_png.js"></script>
-     <script type="text/javascript">
-        ie_png.fix('.png, footer, header nav ul li a, .nav-bg, .list li img');
-     </script>
-<![endif]-->
-<!--[if lt IE 9]>
-  	<script type="text/javascript" src="js/html5.js"></script>
-  <![endif]-->
 </head>
 <body id="page1">
 <div class="wrap">

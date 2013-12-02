@@ -1,21 +1,25 @@
 
-1. Get it in writing.
-Although oral agreements are legal and binding in many situations, they're often difficult to enforce in court (and in some situations, they aren't enforceable at all). In the business world, most agreements should be in writing even if the law doesn't require it. A written agreement is less risky than an oral agreement, because you have a document that clearly spells out each party's rights and obligations in case of confusion or disagreement.
-2. Keep it simple.
-Contrary to what most lawyers think, you don't need a lot of "heretofores" and "party of the first part" legalese to make a contract enforceable. Instead, create short, clear sentences with simple, numbered paragraph headings that alert the reader to what's in the paragraph.
-3. Deal with the right person.
-Don't waste time negotiating a business agreement with a junior person who has to okay everything with the boss. If you sense that this is happening, politely but firmly request to be put in touch with the person in charge. Make sure the person you negotiate with has the authority to bind the business and has a vested interest in making sure the business performs its obligations under the agreement. If you're not sure who that is, ask. In a smaller business, it might be one of the owners; in a larger organization it might be a chief executive officer or chief operating officer.
-4. Identify each party correctly.
-You'd be surprised how often businesspeople get this wrong and how important it is. You need to include the correct legal names of the parties to the contract so it's clear who is responsible for performing the obligations under the agreement (and who you have legal rights against if things go wrong). For instance, if a business is organized as an LLC or a corporation, identify it by its correct legal name --including the Inc. or LLC suffix -- not by the names of the people who are signing the agreement for the business.
-5. Spell out all of the details.
-The body of the agreement should spell out the rights and obligations of each party in detail. Don't leave anything out; if you discuss something verbally and shake on it but it's not in the contract, it will be next to impossible to enforce. In the world of contract law, judges (with a few exceptions) may only interpret a contract from its "four corners," not from what the parties said to each other. If you forget to include something, you can always create a short written amendment. Or, if you haven't signed the agreement, you can handwrite the change into the contract. If parties initial the change, it becomes part of the contract.
-6. Specify payment obligations.
-Specify who pays whom, when the payments must be made, and the conditions for making payments. As you might guess, money is often a contentious issue, so this part should be very detailed. If you're going to pay in installments or only when work is completed to your satisfaction, say so and list dates, times, and requirements. Consider including the method of payment as well. While some people might be okay with a business check or business charge card, others might want a cashier's check or even cash.
-7. Agree on circumstances that terminate the contract.
-It makes sense to set out the circumstances under which the parties can terminate the contract. For instance, if one party misses too many important deadlines, the other party should have the right to terminate the contract without being on the hook legally for breaching (violating) the agreement.
-8. Agree on a way to resolve disputes.
-Write into your agreement what you and the other party will do if something goes wrong. You can decide that you will handle your dispute through arbitration or mediation instead of going to court, which takes up a lot of time and money.
-9. Pick a state law to govern the contract.
-If you and the other party are located in different states, you should choose only one of your state's laws to apply to the contract to avoid sticky legal wrangling later. In addition, you may want to specify where you will mediate, arbitrate, or bring legal actions under the contract. This will simplify your life if a dispute does crop up.
-10. Keep it confidential.
-Often, when one business hires another to perform a service, the other business will become privy to sensitive business information. Your agreement should contain mutual promises that each party will keep strictly confidential any business information it learns of while performing the contract.
+1. Any kind of cheating or taking help from external resources is not permitted.
+
+2. The answers should be written by the person under who's name the registration is done.
+
+3. All the question should be answered with in the specific time.
+
+4. Each level may be cleared only if you score above the bench mark of that level. eg., 20 for the first
+
+5. After you complete the entire test will you be able to use other resources in the system
+
+6. The three levels in the test are designed in increasing order of their difficulty with respect to the time
+
+and marks alloted to the questions as well as the negative marking.
+
+7. The test will be taken with out the help of another person.
+
+8. Violating to any of these rules will you be blocked from writing the test. You will have to contact 
+the admin to take the test again 
+
+9. Please check the box below to agree to the terms and conditions and proceed to the next page. 
+
+after you enter the test page you will be restricted to open another table or focus on other application 
+
+if you dont follow please contact the staff.  
