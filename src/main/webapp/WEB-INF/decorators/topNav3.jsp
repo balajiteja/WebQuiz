@@ -28,7 +28,7 @@ xmlhttp.onreadystatechange=function()
 
 </script>
 </head>
-<h1><a href="#">Student's site</a></h1>
+<h1><a href="#"></a></h1>
          <nav>
             <ul>
                <li><a href="<s:url action="home"/>" class="m1">HOME</a></li>

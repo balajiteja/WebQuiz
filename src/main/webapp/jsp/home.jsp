@@ -26,7 +26,7 @@
         <li>Implement login with Ajax, with the request coming from an insecure page.<br><br></li>
     </ul>
 
-    <p><b>Constraints:- To make the game more interesting and difficult, the user won'€™t be allowed to
+    <p><b>Constraints:- To make the game more interesting and difficult, the user won€™t be allowed to
     search for answers on the internet or from any other resource. The game will check if the player
     is trying to search for answers on the internet or from any other resources and will lead to a
     disqualification in such a case.  </b>  </p>

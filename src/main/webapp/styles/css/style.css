@@ -325,7 +325,7 @@ a:hover {
 }
 
 h1 {
-	text-indent:-9999px;
+	text-indent:10px;
 }
 	h1 a {
 		width:473px;

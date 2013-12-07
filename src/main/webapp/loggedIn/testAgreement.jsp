@@ -83,7 +83,7 @@
 	<input type="checkbox" name="check" onclick="showProceed()"/> I agree to the terms and conditions
 </form>
 	
-    <a href="<s:url action="testAction"/>" id="cont"  style="visibility:hidden" class="button button-gray">Proceed</a>
+<a href="<s:url action="testAction"/>" id="cont"  style="visibility:hidden" class="button button-gray">Proceed</a>
  
   
  

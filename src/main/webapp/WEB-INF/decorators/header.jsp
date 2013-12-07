@@ -28,11 +28,10 @@ xmlhttp.onreadystatechange=function()
 
 </script>
 </head>
-<h1><a href="#">Student's site</a></h1>
          <nav style="width: 100%">
             <ul>
-               <li><a href="#" class="m1">QUIZ</a></li>
-               <li style="float: right"><a href="<s:url action="logoutAction"/>" class="m2">LOGOUT</a></li>
+               <li><a href="#" style="font-family: fantasy;font-size: 40px"class="m1">QUIZ</a></li>
+               <li style="float: right;font: lighter;"><a href="<s:url action="logoutAction"/>" class="m2">LOGOUT of <s:property value="#session['user'].userId"/></a></li>
             </ul>
          </nav>
          
