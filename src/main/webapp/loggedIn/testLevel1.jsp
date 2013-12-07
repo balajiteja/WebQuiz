@@ -11,7 +11,7 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -80,9 +80,9 @@ function showQuestion(){
 			ansd=evaluateSkippedQuestion();
 			if(ansd)
 				{
-			clearError();
-			clearRadio();
-			displaySkippedQuestion();
+					clearError();
+					clearRadio();
+					displaySkippedQuestion();
 				}
 			}
 		else
@@ -160,7 +160,7 @@ function showSkipQuestion(){
 }
 
 function updateQuestionNo(){
-	document.getElementById("noOfQ").innerHTML= "questions: "+(qi+1)+"/"+(questions.length);
+	document.getElementById("noOfQ").innerHTML= " "+(qi+1)+"/"+(questions.length);
 }
 
 function updateQuestion(){
@@ -190,7 +190,6 @@ function evaluateSkippedQuestion(){
 	        break;
 	    }
 	}
-	document.getElementById("rad").innerHTML = rValue;
 	 if(rValue=="notchosen"){
 		clearError();
 		showError("please select an option");
@@ -221,7 +220,7 @@ function evaluate(){
 	        break;
 	    }
 	}
-	document.getElementById("rad").innerHTML = rValue;
+	document.getElementById("resultsfunction").innerHTML = "evaluate part";
 	 if(rValue=="notchosen"){
 		clearError();
 		showError("please select an option");
@@ -338,7 +337,7 @@ $(document).ready(function(){
 	    window_focus = true;
 	});
 	$(window).blur(function() {
-		if(!testCompl){
+		if(!true){
 		alert("You are trying to cheat");
 		document.formex.action='testAction.action'; 
 		document.getElementById('statusVal').value = "tried_to_cheat";
@@ -354,76 +353,84 @@ $(document).ready(function(){
 <body>
 
 <div id="questions"></div>
-<div id="error"></div>
+<div id="error" style="color:red;font-size:20px"></div>
 <div id="result"></div>
 
 <div id="poplt">
 Do not reload or switch tabs. It will be considered as cheating.
-<button onclick="populateQ()">Start Test</button> 
+<button class="button button-gray" onclick="populateQ()">Start Test</button> 
 </div>
 
 <div id="testSec" style="visibility:hidden">
-	
-				<table>
-					<tr>
-						<th>Score</th>
-						<th>Questions</th>
-						<th>radio</th>
-						<th>Previous Result</th>
-						<th>Time</th>
-	
-					</tr>
-					<tr>
-						<td><div id="score"></div></td>
-						<td><div id="noOfQ"></div></td>
-						<td><div id="rad"></div></td>
-						<td><div id="resultsfunction"></div></td>
-						<td><div id="time"></div></td>
-	
-					</tr>
-				</table>
-				<table>
-					<tr>
-						<td>Question:</td>
-					</tr>
-
-					<tr>
-						<td width="100%"><div id="questionDesc"></div></td>
-					</tr>
-				</table>
-				<table>	
-					<tr>
-						<td><input  type="radio" id="r1" name="a" value= "1" /></td>
-						<td><div id="option1"></div></td>
-					</tr> 
-	
-					<tr>
-						<td><input  type="radio" id="r2" name="a" value="2" /></td>
-						<td><div id="option2"></div></td>
-					</tr>
-					
-					<tr>
-						<td><input  type="radio" id="r3" name="a" value="3" /></td>
-						<td><div id="option3"></div></td>
-					</tr>
-					
-					<tr>
-						<td><input  type="radio" id="r4" name="a" value="4" /></td>
-						<td><div id="option4"></div></td>
-					</tr>
-					
-				</table>
-			<input type="button" value="next" name="next" onclick="showQuestion()">
-			<input type="button" value="skip" name="skip" onclick="showSkipQuestion()">
-	
-
+	<section class="notepad">
+	    <div class="notepad-heading" style="color:white">
+	     
+	      <table style="margin-left:30px;">
+	        <tr>
+	            <th>Score </th>
+	            <th>Questions </th>
+	            <th>Previous Result </th>
+	            <th>Time</th>
+	            
+	        </tr>
+	        <tr>
+	            <td><div id="score"></div></td>
+	            <td><div id="noOfQ"></div></td>
+	            <td><div id="resultsfunction"></div></td>
+	            <td><div id="time"></div></td>
+	            
+	        </tr>
+	      </table>
+	   
+	    </div>
+	    <blockquote>
+	      <table>
+	        <tr>
+	            <td>Question:</td>
+	        </tr>
+	        
+	        <tr>
+	            <td width="100%"><div id="questionDesc">Question Description</div></td>
+	        </tr>
+	    </table>
+	    </blockquote>
+	    <blockquote>
+      <table>	
+        <tr>
+            <td><input  type="radio" id="r1" name="a" value= "1" /></td>
+            <td><div id="option1"></div></td>
+        </tr> 
+        
+        <tr>
+            <td><input  type="radio" id="r2" name="a" value="2" /></td>
+            <td><div id="option2"></div></td>
+        </tr>
+        
+        <tr>
+            <td><input  type="radio" id="r3" name="a" value="3" /></td>
+            <td><div id="option3"></div></td>
+        </tr>
+        
+        <tr>
+            <td><input  type="radio" id="r4" name="a" value="4" /></td>
+            <td><div id="option4"></div></td>
+        </tr>
+        
+    </table>
+    </blockquote>
+    </section>
+    
+	<div id="nextskip" style="width: 555px;margin-left: 191px;">
+    	<input type="button" value="next" name="next" class="button button-gray" onclick="showQuestion()">
+        <input type="button" value="skip" name="skip" class="button button-gray" onclick="showSkipQuestion()" style="float:right"/>
+    </div>
 </div>
 
-<form id="form1" name="formex" action="testLevel1" method="post" style="visibility:hidden">
-	<label id="levelId" style="visibility:hidden"></label>
-	<label id="scoreVal" style="visibility:hidden"></label>
-	<label id="statusVal" style="visibility:hidden"></label>
-	<button type="submit" id="finish"  style="visibility:hidden" value="finish"></button>
+<form id="form1" name="formex" action="testLevel1.action" method="post" style="visibility:hidden">
+	<input id="levelId" name="levelId" style="visibility:hidden"></input>
+	<input id="scoreVal" name="score" style="visibility:hidden"></input>
+	<input id="statusVal" name="statusTest" style="visibility:hidden"></input>
+	<button type="submit" id="finish" class="button button-gray" style="visibility:hidden" value="finish">finish</button>
 </form>
 
 </body>
