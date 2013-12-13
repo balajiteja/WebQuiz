@@ -337,7 +337,7 @@ $(document).ready(function(){
 	    window_focus = true;
 	});
 	$(window).blur(function() {
-		if(!true){
+		if(!testCompl){
 		alert("You are trying to cheat");
 		document.formex.action='testAction.action'; 
 		document.getElementById('statusVal').value = "tried_to_cheat";

@@ -420,7 +420,7 @@ Do not reload or switch tabs. It will be considered as cheating.
     </blockquote>
     </section>
     
-	<div id="nextskip" >
+	<div id="nextskip" style="width: 555px;margin-left: 191px;">
     	<input type="button" value="next" name="next" class="button button-gray"  onclick="showQuestion()">
         <input type="button" value="skip" name="skip" class="button button-gray" onclick="showSkipQuestion()" style="float:right"/>
     </div>
